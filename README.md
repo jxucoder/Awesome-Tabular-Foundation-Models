@@ -50,7 +50,7 @@ LTMs could serve as invaluable tools for:
   - [Physical Systems & ODEs](#physical-systems--odes)
   - [Optimization](#optimization)
   - [Architectures & Training](#architectures--training)
-  - [Theory](#theory)
+  - [Theory & Analysis](#theory--analysis)
 - [Benchmarks & Evaluation](#benchmarks--evaluation)
 - [Tutorials & Talks](#tutorials--talks)
 - [Contributing](#contributing)
@@ -116,6 +116,16 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2402.11137) | [Code](https://github.com/automl/TuneTables)
   > Proposes "context optimization" (prompt tuning) to scale PFNs to larger datasets and improve performance by optimizing the input context.
 
+- **Scaling TabPFN: Sketching and Feature Selection for Tabular Prior-Data Fitted Networks** (NeurIPS 2023 Workshop)
+  *Benjamin Feuer, Chinmay Hegde, Niv Cohen*
+  [Paper](https://openreview.net/forum?id=b0OhN0ii36)
+  > Investigates how to summarize large training datasets before feeding them to TabPFN. Studies sketching and feature selection methods, finding that feature dimensionality reduction is more impactful than sample sketching for scaling TabPFN to datasets exceeding its 100-feature/1000-sample limits.
+
+- **Drift-Resilient TabPFN: In-Context Learning Temporal Distribution Shifts on Tabular Data** (NeurIPS 2024)
+  *Kai Helli, David Schnurr, Noah Hollmann, Samuel Müller, Frank Hutter*
+  [Paper](https://neurips.cc/virtual/2024/poster/93581) | [OpenReview](https://openreview.net/forum?id=93581)
+  > Addresses temporal distribution shifts in tabular data using a TabPFN-based approach. Uses structural causal models (SCMs) that gradually shift over time, with a secondary SCM to model parameter changes. Outperforms XGBoost, CatBoost, and standard TabPFN on 18 datasets while maintaining strong calibration.
+
 ### Synthetic Data & Generation
 
 - **TabuLa: Harnessing Language Models for Tabular Data Synthesis** (arXiv 2023)
@@ -180,12 +190,17 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2406.09837)
   > A framework and dataset corpus designed to facilitate the training of various generative and tabular foundation models.
 
-### Theory
+### Theory & Analysis
 
 - **Statistical Foundations of Prior-Data Fitted Networks** (ICML 2023)
-  *Samuel Waites, et al.*
+  *Thomas Nagler*
   [Paper](https://arxiv.org/abs/2305.11097)
   > Provides a theoretical framework for PFNs, offering a frequentist interpretation and analyzing their convergence properties.
+
+- **What exactly has TabPFN learned to do?** (ICLR 2024 Blogposts Track / arXiv 2025)
+  *Calvin McCarter*
+  [Paper](https://arxiv.org/abs/2502.08978) | [Code](https://github.com/calvinmccarter/tabpfn-eval)
+  > An empirical analysis treating TabPFN as a black-box function approximator to understand its learned inductive biases. Explores behavior on simple 1D/2D settings and out-of-distribution tasks (gene expression, MNIST). Includes 2025 re-analysis on TabPFN-v2, showing it can approximately learn the parity function with impressive sample efficiency.
 
 ## Benchmarks & Evaluation
 
