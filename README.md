@@ -71,6 +71,11 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2405.01147)
   > A seminal position paper arguing for developing Large Tabular Models (LTMs). Discusses why tabular data is underrepresented in FM research, proposes desiderata for LTMs, and outlines potential applications: from few-shot tabular models to automating data science, and from synthetic data to empowering multidisciplinary scientific discovery.
 
+- **Unlocking the Full Potential of Data Science Requires Tabular Foundation Models, Agents, and Humans** (NeurIPS 2025 Position Paper Track)
+  *Tianji Cong, Julian Martin Eisenschlos, Daniel Gomm, Leo Grinsztajn, Andreas C Mueller, Anupam Sanghi, Jan-Micha Bodensohn, Vadim Borisov, et al.*
+  [Paper](https://openreview.net/forum?id=aXMPvmBAm5)
+  > Argues that the future of data science lies in collaborative systems that tightly integrate agents, tabular foundation models (TFMs), and human experts. Presents a research agenda for more accessible, robust, and human-centered data science.
+
 - **Transformers Can Do Bayesian Inference** (ICLR 2022)
   *Samuel Müller, Noah Hollmann, Sebastian Pineda Arango, Josif Grabocka, Frank Hutter*
   [Paper](https://openreview.net/forum?id=KSugKcbNf9) | [Code](https://github.com/automl/PFNs)
