@@ -58,9 +58,12 @@ LTMs could serve as invaluable tools for:
 ## Software & Code
 
 - **[PFNs](https://github.com/automl/PFNs)**: The official general-purpose library for creating and training Prior-Data Fitted Networks.
-- **[TabPFN](https://github.com/automl/TabPFN)**: The official repository for the TabPFN model.
-- **[TabICL](https://github.com/soda-inria/tabicl)**: Open-source, scikit-learn-compatible tabular foundation model for in-context learning (TabICLv2).
+- **[TabPFN](https://github.com/PriorLabs/TabPFN)**: The official repository for the TabPFN model.
+- **[TabICL](https://github.com/soda-inria/tabicl)**: Official implementation of TabICL and TabICLv2, open-source tabular foundation models for classification and regression.
+- **[TabSwift](https://github.com/LAMDA-Tabular/TabSwift)**: Official code for TabSwift, a lightweight row-wise attention TFM with adaptive early-exit.
+- **[Nori](https://github.com/Synthefy/synthefy-nori)**: Synthefy's fully open-source (weights, inference, and training code) tabular foundation model for regression (`pip install synthefy-nori`).
 - **[TabTune](https://arxiv.org/abs/2511.02802)**: A unified library for inference and fine-tuning across multiple tabular foundation models.
+- **[TabArena](https://github.com/autogluon/tabarena)**: A living benchmarking system for tabular ML with a public leaderboard at [tabarena.ai](https://tabarena.ai).
 
 ## Papers
 
@@ -97,6 +100,21 @@ LTMs could serve as invaluable tools for:
   *Léo Grinsztajn, Klemens Flöge, Oscar Key, Felix Birkel, Philipp Jund, Brendan Roof, Benjamin Jäger, Dominik Safaric, Simone Alessi, Adrian Hayler, Mihir Manium, Rosen Yu, Felix Jablonski, Shi Bin Hoo, Anurag Garg, Jake Robertson, Magnus Bühler, Vladyslav Moroshan, Lennart Purucker, Clara Cornu, Lilly Charlotte Wehrhahn, Alessandro Bonetto, Bernhard Schölkopf, Sauraj Gambhir, Noah Hollmann, Frank Hutter*
   [Paper](https://arxiv.org/abs/2511.08667) | [Code](https://github.com/PriorLabs/TabPFN)
   > TabPFN-2.5 is built for datasets with up to 50,000 data points and 2,000 features, a 20x increase in data cells compared to TabPFNv2. Default TabPFN-2.5 has a 100% win rate against default XGBoost on small to medium-sized classification datasets and an 87% win rate on larger datasets up to 100K samples. Includes a distillation engine to convert TabPFN-2.5 into compact MLPs or tree ensembles for low-latency production deployment.
+
+- **TabPFN-3 Technical Report** (Technical Report, 2026)
+  *Prior Labs Team*
+  [Paper](https://arxiv.org/abs/2605.13986)
+  > The next generation of TabPFN, scaling state-of-the-art in-context learning to datasets with up to 1M training rows on a single GPU. Features a redesigned architecture with an attention-based many-class decoder, an improved preprocessing pipeline, inference-time optimizations, and an enhanced synthetic SCM prior. Brings substantial gains on time series, relational, and tabular-text data.
+
+- **TabSwift: An Efficient Tabular Foundation Model with Row-Wise Attention** (ICML 2026, Spotlight)
+  *Si-Yang Liu, Han-Jia Ye*
+  [Paper](https://arxiv.org/abs/2606.07345) | [Code](https://github.com/LAMDA-Tabular/TabSwift)
+  > Revisits the original TabPFN design, showing a lightweight row-wise attention-only backbone stays competitive with two enhancements: gated attention stabilization and learnable register tokens for global context. Supports both classification and regression, and adds an adaptive layer-wise early-exit mechanism that dynamically adjusts inference depth per sample for anytime, latency-sensitive serving.
+
+- **Nori: A Tabular Foundation Model for Regression Trained on Synthetic Data** (Open-source release, Synthefy, 2026)
+  *Synthefy (Po-han Li, Aditya Narayanan, Sai Shankar Narasimhan, et al.)*
+  [Model](https://huggingface.co/Synthefy/Nori) | [Code](https://github.com/Synthefy/synthefy-nori) | [Blog](https://www.synthefy.com/blog/synthefy-tabular-release)
+  > A compact (~6M parameter) FeaturesTransformer for tabular regression via in-context learning, trained entirely on synthetic data. Alternates feature attention (across columns) and sample attention (across rows), uses RBF feature embeddings with native missing-value handling, and predicts a full quantile distribution via pinball loss. Reported #1 on aggregate across 96 real-world datasets, beating tuned XGBoost and LightGBM on ~80% of them at ~1/10 the size of peers.
 
 - **TabDPT: Scaling Tabular Foundation Models on Real Data** (NeurIPS 2025)
   *University of Toronto / Layer 6 AI*
@@ -311,6 +329,7 @@ Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147)
 
 ### Related Benchmarks
 
+- **[TabArena](https://tabarena.ai)** - A continuously maintained "living" benchmark for tabular ML (NeurIPS 2025, [paper](https://arxiv.org/abs/2506.16791)). Curates 51 real-world datasets and evaluates tree-based models, neural networks, and tabular foundation models with a public Elo leaderboard. The de facto standard for ranking modern TFMs.
 - **TabZilla** - Comprehensive tabular data benchmark
 - **OpenML** - Large collection of tabular datasets
 - **Kaggle Competitions** - Real-world tabular challenges
@@ -337,4 +356,4 @@ Contributions are welcome! Please feel free to submit a Pull Request to add new 
 4. Submit a PR.
 
 ---
-*Last updated: March 2026*
+*Last updated: June 2026*
