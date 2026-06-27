@@ -499,6 +499,11 @@ LTMs could serve as invaluable tools for:
   [OpenReview](https://openreview.net/forum?id=FRj6pclhXE)
   > Learns universal tabular embeddings using maximal correlation (HGR) alignment.
 
+- **Learned Sequence Representations over Raw Credit Events for Credit-Abuse Scoring** (ICML 2026 FMSD Workshop)
+  *Tianming Zhou, Jiarui Xu, Nitesh Kumar, Alexander Statnikov*
+  [OpenReview](https://openreview.net/forum?id=8Zxm19jTVM)
+  > Learns representations directly from raw credit-event sequences to improve credit-abuse scoring, instead of relying on hand-engineered tabular features.
+
 ### Theory & Analysis
 
 - **Statistical Foundations of Prior-Data Fitted Networks** (ICML 2023)
