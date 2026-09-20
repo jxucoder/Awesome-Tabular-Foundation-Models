@@ -68,8 +68,9 @@ LTMs could serve as invaluable tools for:
 - **[TabTune](https://arxiv.org/abs/2511.02802)**: A unified library for inference and fine-tuning across multiple tabular foundation models.
 - **[TabArena](https://github.com/autogluon/tabarena)**: A living benchmarking system for tabular ML with a public leaderboard at [tabarena.ai](https://tabarena.ai).
 - **[TabPFN-3 weights](https://huggingface.co/Prior-Labs/tabpfn_3)**: Prior Labs' TabPFN-3 checkpoints (research / internal-evaluation license), scaling in-context learning to 1M rows; see the [changelog](https://docs.priorlabs.ai/changelog/tabpfn-3).
+- **[TabPFN-3.5](https://priorlabs.ai/technical-reports/tabpfn-3-5)**: Current Prior Labs flagship (`pip install -U tabpfn`); Fast / Plus / Thinking variants. Plus is also available on SAP AI Core. Docs: [docs.priorlabs.ai](https://docs.priorlabs.ai).
 - **[Mitra](https://www.amazon.science/blog/mitra-mixed-synthetic-priors-for-enhancing-tabular-foundation-models)**: Amazon's TFM trained on a curated mixture of synthetic priors, shipped inside [AutoGluon](https://github.com/autogluon/autogluon); Mitra-v2 ([report](https://arxiv.org/abs/2609.04540)) adds a 2D-attention backbone and a much larger synthetic task distribution.
-- **[LimiX](https://github.com/limix-ldm-ai/LimiX)**: Open large structured-data models (LimiX-16M, LimiX-2M) from StableAI / Tsinghua covering classification, regression, imputation, and generation; weights on [Hugging Face](https://huggingface.co/stable-ai/LimiX-2M).
+- **[LimiX](https://github.com/limix-ldm-ai/LimiX)**: Open large structured-data models from StableAI / Tsinghua (LimiX-16M, LimiX-2M, and the 400M [LimiX-2](https://huggingface.co/stable-ai/LimiX-2)) covering classification, regression, imputation, and (in LimiX-2) causal-skeleton recovery.
 - **[Orion-MSP](https://github.com/Lexsi-Labs/Orion-MSP)** / **[Orion-BiX](https://github.com/Lexsi-Labs/Orion-BiX)**: Lexsi Labs' open tabular ICL models with multi-scale sparse attention and bi-axial attention respectively.
 - **[ConTextTab / SAP RPT-1](https://github.com/SAP-samples/sap-rpt-1-oss)**: SAP's semantics-aware tabular in-context learner trained on real-world tables with language-model embeddings for text cells.
 - **[TabDPT inference](https://github.com/layer6ai-labs/TabDPT-inference)**: Layer 6's inference code for TabDPT and TabDPT-Turbo.
@@ -140,6 +141,11 @@ LTMs could serve as invaluable tools for:
   *Prior Labs Team*
   [Paper](https://arxiv.org/abs/2605.13986)
   > The next generation of TabPFN, scaling state-of-the-art in-context learning to datasets with up to 1M training rows on a single GPU. Features a redesigned architecture with an attention-based many-class decoder, an improved preprocessing pipeline, inference-time optimizations, and an enhanced synthetic SCM prior. Brings substantial gains on time series, relational, and tabular-text data.
+
+- **TabPFN-3.5: Technical Report** (Technical Report, Sep 2026)
+  *Prior Labs Team (Benjamin Jäger, Nick Erickson, Léo Grinsztajn, Felix Birkel, Klemens Flöge, Oscar Key, et al.)*
+  [Paper](https://arxiv.org/abs/2609.17895) | [Report](https://priorlabs.ai/technical-reports/tabpfn-3-5) | [Code](https://github.com/PriorLabs/TabPFN)
+  > Flagship follow-up to TabPFN-3. Reports first place on TabArena and BeyondArena, with the largest gains on the data practitioners actually have: non-i.i.d. temporal and grouped splits, high-cardinality categoricals, wide tables, and tables mixed with text and images. Ships Fast (up to ~3–6× faster than the base model), Plus (advanced text/date handling; also on SAP AI Core), and Thinking (inference-time compute, up to 12× faster than TabPFN-3-Thinking) variants. Code is Apache 2.0; weights use the TABPFN-3.5 License.
 
 - **TabSwift: An Efficient Tabular Foundation Model with Row-Wise Attention** (ICML 2026, Spotlight)
   *Si-Yang Liu, Han-Jia Ye*
@@ -246,6 +252,11 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2607.27546) | [OpenReview](https://openreview.net/forum?id=1Ov4RAWuW4)
   > Studies techniques to reduce the memory footprint of tabular foundation models at inference and/or training time.
 
+- **Attention Quantization for Tabular Foundation Models** (arXiv, Sep 2026)
+  *Jonas M. Kübler, Benjamin Jäger, Klemens Flöge, Noah Hollmann, Frank Hutter*
+  [Paper](https://arxiv.org/abs/2609.13031)
+  > First FP8 attention study for TFMs. Quantizes queries, keys, and values (not weights or the KV cache) and aligns train/test quantization error so accuracy does not collapse; a Triton kernel reaches up to 1.7× speedup on TabPFN-v3 and TabICLv2 with no relevant TabArena/BeyondArena drop.
+
 - **TFM-Retouche: A Lightweight Input-Space Adapter for Tabular Foundation Models** (ICML 2026 FMSD Workshop)
   *Duong Nguyen, Mohammed Jawhar, Nicolas Chesneau*
   [Paper](https://arxiv.org/abs/2605.06047) | [OpenReview](https://openreview.net/forum?id=P1bvn0jvGX)
@@ -310,6 +321,11 @@ LTMs could serve as invaluable tools for:
   *Yuanrui Wang, Xingxuan Zhang, Han Yu, Mingchao Hao, Gang Ren, et al., Peng Cui*
   [Paper](https://arxiv.org/abs/2606.04485) | [ICML](https://icml.cc/virtual/2026/poster/63251) | [Code](https://github.com/limix-ldm-ai/LimiX)
   > Shows that affine scalar tokenization gives each feature a one-dimensional value channel that causes low effective rank. Proposes RaBEL (localized RBF tokenization) and a readout-aligned S→N→F block ordering; the resulting 2M-parameter model beats larger TabPFN-v2 and TabICL baselines at a fraction of the cost.
+
+- **LimiX-2: A Contextual Mechanism Network Towards General Structured-Data Intelligence** (Technical Report, Sep 2026)
+  *Xingxuan Zhang, Gang Ren, Hao Yuan, Hao Zou, Hongze Tan, Hui Wang, et al., Peng Cui (StableAI / Tsinghua)*
+  [Paper](https://arxiv.org/abs/2609.17488) | [Code](https://github.com/limix-ldm-ai/LimiX) | [Model](https://huggingface.co/stable-ai/LimiX-2)
+  > 400M-parameter successor that switches from target-centric PFN prediction `p(y | x, D)` to Contextual Mechanism Networks learning the joint `p(x, y | D)` via Context-Conditional Masked Modeling on SCM-generated tables. One checkpoint does classification, regression, imputation, and causal-skeleton recovery. Reports #1 Elo on TabArena (1935), TALENT, and BCCO, above AutoGluon 1.6 and TabPFN-3. Non-commercial weights.
 
 - **Orion-MSP: Multi-Scale Sparse Attention for Tabular In-Context Learning** (arXiv 2025)
   *Mohamed Bouadi, Pratinav Seth, Aditya Tanna, Vinay Kumar Sankarapu (Lexsi Labs)*
@@ -920,6 +936,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2305.17535)
   > Explores the application of PFNs as surrogate models for Bayesian Optimization.
 
+- **Benchmarking Tabular Foundation Models as Surrogates in Expensive Evolutionary Optimization** (arXiv, Sep 2026)
+  *Lu Han, Jin Wang, Yuchen Li, Haoran Gu, Shulei Liu, Ziyang Shi, Wenao Lu, Handing Wang*
+  [Paper](https://arxiv.org/abs/2609.18130)
+  > Puts TabPFN inside offline and online surrogate-assisted evolutionary algorithms across single-/multi-objective, constrained, combinatorial, mixed-variable, and engineering problems. Effectiveness is highly problem-dependent: TabPFN helps on some complex landscapes but does not universally replace RBF or Gaussian-process surrogates.
+
 - **Context-Aware Learning Curve Extrapolation with Prior-Data Fitted Networks** (ICML 2026 FMSD Workshop)
   *Cheng Yan, Steven Adriaensen, Tom Julian Viering*
   [OpenReview](https://openreview.net/forum?id=oN4FIXBVeS)
@@ -1378,6 +1399,11 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   [Paper](https://arxiv.org/abs/2604.01841)
   > Multi-cohort EHR benchmark of classical, deep tabular, and tabular ICL models; PFN-based ICL is sample-efficient but degrades under naive retrieval, motivating AWARE, a task-aligned retrieval framework.
 
+- **Target leakage, not model class, explains reported accuracy in survey-based cardiovascular screening** (arXiv, Sep 2026)
+  *Raad Bin Tareaf, Murad Al-Rajab, Samia Loucif, Samer Ellaham, Cedric Schmitz*
+  [Paper](https://arxiv.org/abs/2609.11838)
+  > Leakage-tiered audit of 10 classifiers, including TabPFN and TabICL, on 442k BRFSS respondents. Removing two post-diagnostic features costs every model ~0.05 AUROC and collapses the field into a 0.0045-wide band; an explainable boosting machine is non-inferior and ~104× faster. Argues evaluation practice, not foundation-model capacity, is the binding constraint.
+
 - **Multitask Multimodal Fusion with Tabular Foundation Models for Peak and Durability Prediction of Pertussis Booster Response** (ICML 2026 FMSD Workshop)
   *Divya Sitani*
   [Paper](https://arxiv.org/abs/2605.12852) | [OpenReview](https://openreview.net/forum?id=iIsQ9SiAxF)
@@ -1475,6 +1501,7 @@ Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147)
 ## Tutorials & Talks
 
 - **[Getting Started with PFNs](https://github.com/automl/PFNs/blob/main/Tutorial_1_Basics.ipynb)**: Official tutorial notebook from the PFNs repository.
+- **[TabPFN-3.5 model report](https://priorlabs.ai/technical-reports/tabpfn-3-5)** (Sep 2026): Prior Labs' flagship write-up. Live deep dive with Frank Hutter on Sep 28; [hackathon](https://x.com/prior_labs/status/2100151981444854150) through Oct 6 (DGX Spark / Jetson AGX Orin / RTX 4090).
 - **[FMSD 2025 talks on SlidesLive](https://slideslive.com/icml-2025/1st-workshop-on-foundation-models-for-structured-data-fmsd)**: Recorded invited talks and spotlights from the 1st Workshop on Foundation Models for Structured Data (ICML 2025).
 - **Invited talks at FMSD @ ICML 2026** ([workshop page](https://icml.cc/virtual/2026/workshop/54066)):
   - *Katharina Eggensperger* - "Scaling and Understanding Models for (Scientific) Tabular Data"
