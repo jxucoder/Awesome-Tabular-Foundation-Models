@@ -148,6 +148,16 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2609.17895) | [Report](https://priorlabs.ai/technical-reports/tabpfn-3-5) | [Code](https://github.com/PriorLabs/TabPFN)
   > Flagship follow-up to TabPFN-3. Reports first place on TabArena and BeyondArena, with the largest gains on the data practitioners actually have: non-i.i.d. temporal and grouped splits, high-cardinality categoricals, wide tables, and tables mixed with text and images. Ships Fast (up to ~3–6× faster than the base model), Plus (advanced text/date handling; also on SAP AI Core), and Thinking (inference-time compute, up to 12× faster than TabPFN-3-Thinking) variants. Code is Apache 2.0; weights use the TABPFN-3.5 License.
 
+- **TabFM: A Zero-Shot Foundation Model for Tabular Data** (Technical Report, Sep 2026)
+  *Weihao Kong, Erez Louidor Ilan, Shuxin Nie, Taman Narayan, Rajat Sen, Yichen Zhou, Deqing Fu, Samet Oymak, Abhimanyu Das (Google)*
+  [Paper](https://arxiv.org/abs/2609.37959)
+  > Technical report for Google's TabFM: a 400M-parameter in-context learner trained entirely on synthetic tables from structural causal models, giving calibrated zero-shot predictions in a single forward pass. Across all 51 TabArena datasets (38 classification, 13 regression), zero-shot TabFM ranks first among default TFMs and beats tuned AutoML pipelines. Two extensions over the same frozen weights go further: TabFM+ (multi-view feature expansion, ensembling, post-hoc calibration) and TabFM-Auto (LLM-guided data processing and feature engineering).
+
+- **TabFM-Auto: Self-Evolving Pipelines for Tabular Foundation Models** (arXiv, Sep 2026)
+  *Deqing Fu, Huangyuan Su, Rajat Sen, Taman Narayan, Sujay Sanghavi, Abhimanyu Das, Weihao Kong (Google)*
+  [Paper](https://arxiv.org/abs/2609.37989) | [Project](https://deqingfu.github.io/tabfm-auto/)
+  > Pairs a frozen TabFM with an LLM agent that evolves the data pipeline around it (cleaning, feature engineering, context selection, post-processing) using column names, task descriptions, auxiliary files, and validation feedback. Five TabFM-Auto configurations take the top five spots on TabArena, with the best lifting TabFM from 1785 to 2013 Elo; discovered pipelines transfer to other frozen TFMs (+69 to +143 Elo) with no further search, and it ranks first among MLE agents on MLE-Bench's 8 tabular competitions. The project page has an explorer of the features the LLM agents found.
+
 - **NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Foundation Models** (Blog, Sep 2026)
   *Jingang Qu, Valter Hudovernik, Martin Jurkovic, Cedric Lorenz, Akihiro Nitta, Dmitry Gordeev, Federico Lopez, Ramona Bendias, Gilberto Titericz Jr., Aleksandar S. Sokolovski, Isabel Hulseman, Jure Leskovec, Matthias Fey (NVIDIA / Kumo)*
   [Blog](https://huggingface.co/blog/nvidia/kumo-tabular) | [Model](https://huggingface.co/nvidia/Kumo-Tabular) | [Code](https://github.com/NVIDIA/structured-data-models)
