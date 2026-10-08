@@ -1090,6 +1090,16 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
 
 ### Architectures & Training
 
+- **Self-Attention Between Datapoints: Going Beyond Individual Input-Output Pairs in Deep Learning** (NeurIPS 2021)
+  *Jannik Kossen, Neil Band, Clare Lyle, Aidan N. Gomez, Tom Rainforth, Yarin Gal*
+  [Paper](https://arxiv.org/abs/2106.02584) | [Code](https://github.com/OATML/Non-Parametric-Transformers)
+  > Introduces Non-Parametric Transformers (NPTs), which take the whole dataset as input and alternate Attention Between Datapoints (rows) with Attention Between Attributes (columns), trained with a BERT-style masking objective. The attention between datapoints, where a query attends to labelled context rows, is the direct precursor of in-context inference in TabPFN and TabICL.
+
+- **SAINT: Improved Neural Networks for Tabular Data via Row Attention and Contrastive Pre-Training** (TRL @ NeurIPS 2022)
+  *Gowthami Somepalli, Micah Goldblum, Avi Schwarzschild, C. Bayan Bruss, Tom Goldstein*
+  [Paper](https://table-representation-learning.github.io/assets/papers/saint_improved_neural_networks.pdf) | [Code](https://github.com/somepago/saint)
+  > Introduces SAINT, which combines self-attention over features (columns) with a novel intersample attention over rows, plus learned embeddings for continuous features and contrastive pre-training. Together with NPT, one of the two concurrent 2021 works that brought sample (row) and feature (column) attention to tabular deep learning.
+
 - **MotherNet: A Foundational Hypernetwork for Tabular Classification** (arXiv 2023)
   *Samuel Müller, Frank Hutter*
   [Paper](https://arxiv.org/abs/2312.08598) | [Code](https://github.com/automl/MotherNet)
