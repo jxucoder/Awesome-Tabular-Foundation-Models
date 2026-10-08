@@ -40,6 +40,7 @@ LTMs could serve as invaluable tools for:
 
 - [Introduction](#introduction)
 - [Why Tabular Foundation Models?](#why-tabular-foundation-models)
+- [Books & Learning Resources](#books--learning-resources)
 - [Software & Code](#software--code)
 - [Papers](#papers)
   - [Foundations & Position Papers](#foundations--position-papers)
@@ -57,6 +58,11 @@ LTMs could serve as invaluable tools for:
 - [Tutorials & Talks](#tutorials--talks)
 - [Workshops & Venues](#workshops--venues)
 - [Contributing](#contributing)
+
+## Books & Learning Resources
+
+- **[Tabular Foundation Models](https://tabularfoundationmodels.com/)** (Christoph Molnar): Free online book on how TabPFN and TabICL predict without training, covering PFNs, in-context learning, pretraining, classification, regression, quantile regression, and time series forecasting, with hands-on Python and a look at whether to bet on TFMs.
+- **[Table as Prompt: An Interactive Guide to Tabular Foundation Models](https://github.com/Affirm/tabular-foundation-models-tutorial)** (Affirm; NeurIPS 2026 Education Track): Interactive [website](https://affirm.github.io/tabular-foundation-models-tutorial/) walking through tabular in-context learning with TabICLv2 as the worked example, plus a [Colab primer notebook](https://colab.research.google.com/github/Affirm/tabular-foundation-models-tutorial/blob/main/materials/notebooks/01_tabicl_primer.ipynb), a model landscape, and curated learning and conference resources.
 
 ## Software & Code
 
