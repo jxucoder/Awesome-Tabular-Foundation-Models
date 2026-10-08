@@ -40,6 +40,7 @@ LTMs could serve as invaluable tools for:
 
 - [Introduction](#introduction)
 - [Why Tabular Foundation Models?](#why-tabular-foundation-models)
+- [Books & Learning Resources](#books--learning-resources)
 - [Software & Code](#software--code)
 - [Papers](#papers)
   - [Foundations & Position Papers](#foundations--position-papers)
@@ -54,10 +55,14 @@ LTMs could serve as invaluable tools for:
   - [Theory & Analysis](#theory--analysis)
   - [Applications & Domain Studies](#applications--domain-studies)
 - [Benchmarks & Evaluation](#benchmarks--evaluation)
-- [Books & Learning Resources](#books--learning-resources)
 - [Tutorials & Talks](#tutorials--talks)
 - [Workshops & Venues](#workshops--venues)
 - [Contributing](#contributing)
+
+## Books & Learning Resources
+
+- **[Tabular Foundation Models](https://tabularfoundationmodels.com/)** (Christoph Molnar): Free online book on how TabPFN and TabICL predict without training, covering PFNs, in-context learning, pretraining, classification, regression, quantile regression, and time series forecasting, with hands-on Python and a look at whether to bet on TFMs.
+- **[Table as Prompt: An Interactive Guide to Tabular Foundation Models](https://github.com/Affirm/tabular-foundation-models-tutorial)** (Affirm; NeurIPS 2026 Education Track): Interactive [website](https://affirm.github.io/tabular-foundation-models-tutorial/) walking through tabular in-context learning with TabICLv2 as the worked example, plus a [Colab primer notebook](https://colab.research.google.com/github/Affirm/tabular-foundation-models-tutorial/blob/main/materials/notebooks/01_tabicl_primer.ipynb), a model landscape, and curated learning and conference resources.
 
 ## Software & Code
 
@@ -1581,11 +1586,6 @@ Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147)
 - **[Beyond Accuracy: Toward Trustworthy Tabular Foundation Models in Industrial Applications](https://openreview.net/forum?id=r3RAi8Kqzl)** - Looks beyond accuracy toward trustworthiness of TFMs in industrial settings. *Johannes Keler, Matthias Woehrle, Jan Achterhold, Mark Schillinger, Maria Lyssenko, Luiz Ricardo Douat.*
 - **[Benchmarking Tabular Foundation Models for Churn Prediction](https://openreview.net/forum?id=LtXucHLtiN)** - Benchmarks tabular foundation models on customer churn prediction. *Sobhan Seyedzadeh, Mostafa Karimi.*
 - **[Are Tabular Foundation Model Rankings Reliable?](https://openreview.net/forum?id=7jbzkGYag6)** has a companion at the ICML 2026 Graph Foundation Models workshop: *Beyond Accuracy on RelBench: Item Response Theory Analysis of Relational Deep Learning Benchmarks* ([workshop](https://icml.cc/virtual/2026/workshop/54057)). *Ramprasath et al.*
-
-## Books & Learning Resources
-
-- **[Tabular Foundation Models](https://tabularfoundationmodels.com/)** (Christoph Molnar): Free online book on how TabPFN and TabICL predict without training, covering PFNs, in-context learning, pretraining, classification, regression, quantile regression, and time series forecasting, with hands-on Python and a look at whether to bet on TFMs.
-- **[Table as Prompt: An Interactive Guide to Tabular Foundation Models](https://github.com/Affirm/tabular-foundation-models-tutorial)** (Affirm; NeurIPS 2026 Education Track): Interactive [website](https://affirm.github.io/tabular-foundation-models-tutorial/) walking through tabular in-context learning with TabICLv2 as the worked example, plus a [Colab primer notebook](https://colab.research.google.com/github/Affirm/tabular-foundation-models-tutorial/blob/main/materials/notebooks/01_tabicl_primer.ipynb), a model landscape, and curated learning and conference resources.
 
 ## Tutorials & Talks
 
