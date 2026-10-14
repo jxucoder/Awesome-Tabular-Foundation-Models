@@ -85,8 +85,18 @@ LTMs could serve as invaluable tools for:
 - **[modded-nanoTabPFN](https://github.com/borawhocodess/modded-nanotabpfn)**: Speedrun-style minimal TabPFN pretraining code from *Speedrunning Tabular Foundation Model Pretraining*.
 - **[RDBLearn](https://github.com/HKUSHXLab/rdblearn)**: scikit-learn-style toolkit that auto-featurizes relational databases and runs any tabular ICL backend on the result.
 - **[RDB-PFN](https://github.com/MuLabPKU/RDBPFN)**: First relational foundation model trained purely on synthetic multi-table databases.
+- **[Relational Transformer (RT / RT-J / RT-PluRel)](https://github.com/stanford-star/relational-transformer)**: Stanford STAR's open-source library and pretrained checkpoints ([RT-J](https://huggingface.co/stanford-star/rt-j), [The Join corpus](https://huggingface.co/datasets/stanford-star/the-join)) for zero- and few-shot in-context prediction over multi-table relational databases.
+- **[Causilo](https://github.com/nums-ai/causilo)**: Nums AI's high-speed tabular foundation model for classification and regression (`pip install causilo`; [weights](https://huggingface.co/nums-ai/causilo)).
+- **[TabCausal](https://github.com/LAMDA-Tabular/TabCausal)**: LAMDA-Tabular's pretrained foundation model and inference package (`tabcausal`; [weights](https://huggingface.co/LAMDA-Tabular/TabCausal)) for zero-shot tabular causal discovery across observational and interventional tables.
+- **[LinearPFN](https://github.com/schiekiera/LinearPFN)**: Pretrained PFN for amortized Bayesian spike-and-slab variable selection with main effects and pairwise interactions ([weights](https://huggingface.co/schiekiera/LinearPFN)).
+- **[OFAG](https://github.com/Cloudy1225/OFAG)**: Pretrained PFN-style foundation model and checkpoint for zero-shot attributed graph clustering.
 - **[TabPrep](https://github.com/atschalz/tabprep)**: Lightweight feature-engineering pipeline that lifts tree, neural, and foundation models on TabArena.
 - **[TACTICL](https://github.com/Hebog/tfm_compression)**: Task-aware layer pruning + adapters for compressing tabular ICL models.
+- **[TFM Distillation](https://github.com/nums-ai/TFM_Distillation)**: Recipe and code for distilling tabular foundation models into fast neural or tree-based student predictors using observed and synthetic queries.
+- **[TabAlign](https://github.com/yoel-zeldes/tabalign)**: CPU-friendly activation alignment that maps partial-context TFM activations toward full-context teachers.
+- **[Test-Time Compute for TFMs](https://github.com/kanghui-learning/test-time-compute-for-tabular-foundation-models)**: Toolkit for TFM test-time compute across parameter-efficient adaptation (`DiagScale`), selective ensemble aggregation, and context retrieval.
+- **[Tabular Attention Benchmark](https://github.com/SAP-samples/tabular-attention-benchmark)**: SAP's reproducible benchmark for 2D row/column attention backends (Torch SDPA, cuDNN, FlashAttention-2/3/4, vLLM, SageAttention) on A100/H100/B200 GPUs.
+- **[TabReliBench](https://github.com/Tianqi-Zhao/TabReliBench)**: Evaluation suite for benchmarking the reliability, calibration, and predictive distributions of tabular foundation models beyond point accuracy.
 - **[TabPFN IML](https://github.com/david-rundel/tabpfn_iml)**: Interpretability methods (feature effects, importance, Shapley) specialised for TabPFN.
 
 ## Papers
@@ -551,7 +561,7 @@ LTMs could serve as invaluable tools for:
 
 - **Causilo Technical Report** (Technical Report, Sep 2026)
   *Minyong Cho, Minho Jeong, Dooho Lee, Jinmo Lee, Jaemin Yoo*
-  [Paper](https://arxiv.org/abs/2609.22866)
+  [Paper](https://arxiv.org/abs/2609.22866) | [Code](https://github.com/nums-ai/causilo) | [Model](https://huggingface.co/nums-ai/causilo)
   > A tabular foundation model pretrained on ~36M synthetic tables that inserts a cell-level row-refinement module and a second column stage before row compression, using cross-attention through fixed summary tokens to keep attention cost linear in feature count. Reaches 1785.4 Elo on TabArena at 0.10s per 1K test samples (31.6% faster than TabPFN-3.5-Fast) and strong results on BeyondArena and ScoringBench.
 
 - **TAFFY: A Task-Adaptive Tabular Foundation Model with In-Context Diversity** (arXiv, Oct 2026)
@@ -723,7 +733,7 @@ LTMs could serve as invaluable tools for:
 
 - **RT-J: Large-Scale Pretraining of Relational Transformers for Context-Efficient Predictions** (NeurIPS 2026; ICML 2026 FMSD Workshop)
   *Rishabh Ranjan, Vignesh Kothapalli, Harshvardhan Agarwal, Charilaos I. Kanatsoulis, Roshan Reddy Upendra, Tom Palczewski, Carlos Guestrin, Jure Leskovec*
-  [Paper](https://arxiv.org/abs/2610.17867) | [Project](https://star-project.stanford.edu/rt-j) | [Workshop version](https://openreview.net/forum?id=oQINTd9din)
+  [Paper](https://arxiv.org/abs/2610.17867) | [Project](https://star-project.stanford.edu/rt-j) | [Code](https://github.com/stanford-star/relational-transformer) | [Model](https://huggingface.co/stanford-star/rt-j) | [Workshop version](https://openreview.net/forum?id=oQINTd9din)
   > An 85M-parameter relational foundation model pretrained on *The Join* (639 web-crawled databases with 6,023 LLM-generated forecasting tasks) with 8,192-cell contexts, a random-walk retriever, and test-time context tuning/ensembling. Requires 10× fewer in-context examples on RelBench regression tasks to match LLM-agent or RDBLearn feature-engineering pipelines paired with TabICLv2 or LightGBM. Full version of the FMSD paper *Large-Scale Pretraining unlocks Few-Shot Prediction for Relational Data*.
 
 - **Parameter-Free Encoders Remain Viable for RDB Foundation Models** (ICML 2026 FMSD Workshop)
@@ -781,9 +791,9 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2602.12606)
   > Expands RelBench to 11 databases (22M+ rows, 29 tables) and adds autocomplete tasks that require inferring missing attribute values inside relational tables, targeting relational foundation models.
 
-- **PluRel: Synthetic Data unlocks Scaling Laws for Relational Foundation Models** (arXiv 2026)
+- **PluRel: Synthetic Data unlocks Scaling Laws for Relational Foundation Models** (ICML 2026)
   *Vignesh Kothapalli, Rishabh Ranjan, Valter Hudovernik, Vijay Prakash Dwivedi, Johannes Hoffart, Carlos Guestrin, Jure Leskovec*
-  [Paper](https://arxiv.org/abs/2602.04029)
+  [Paper](https://arxiv.org/abs/2602.04029) | [Code](https://github.com/stanford-star/relational-transformer)
   > Synthesizes multi-table databases from scratch (schema graphs, primary–foreign-key bipartite graphs, causal feature mechanisms), unlocking scaling laws for relational foundation models where real databases are private.
 
 - **Relational In-Context Learning via Synthetic Pre-training with Structural Prior (RDB-PFN)** (arXiv 2026)
@@ -1019,10 +1029,10 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [OpenReview](https://openreview.net/forum?id=U4KiOBxY1X)
   > Uses tabular in-context learning to infer a causal ordering among variables.
 
-- **CausalTab: Pretraining Across Causal Environments for Tabular Causal Discovery** (NeurIPS 2026; ICML 2026 FMSD Workshop)
+- **CausalTab / TabCausal: Pretraining Across Causal Environments for Tabular Causal Discovery** (NeurIPS 2026; ICML 2026 FMSD Workshop)
   *Zi-Rong Li, Si-Yang Liu, Tian-Zuo Wang, Han-Jia Ye*
-  [OpenReview](https://openreview.net/forum?id=eg7EMDLpBt) | [Workshop version](https://openreview.net/forum?id=og3UVhP7M1)
-  > Pretrains across diverse causal environments to enable tabular causal discovery.
+  [Paper](https://arxiv.org/abs/2605.31156) | [OpenReview](https://openreview.net/forum?id=eg7EMDLpBt) | [Workshop version](https://openreview.net/forum?id=og3UVhP7M1) | [Code](https://github.com/LAMDA-Tabular/TabCausal) | [Model](https://huggingface.co/LAMDA-Tabular/TabCausal)
+  > Pretrains across diverse causal environments to enable zero-shot tabular causal discovery over observational and mixed observational/interventional tables.
 
 - **Causal Foundation Models Perform Better without Post-treatment Variables** (ICML 2026 FMSD Workshop)
   *Junha Ham, Deokgyu Kim, Doeun Kim, Serjin Kim, Sanghack Lee*
