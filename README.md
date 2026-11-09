@@ -79,6 +79,9 @@ LTMs could serve as invaluable tools for:
 - **[Mitra](https://www.amazon.science/blog/mitra-mixed-synthetic-priors-for-enhancing-tabular-foundation-models)**: Amazon's TFM trained on a curated mixture of synthetic priors, shipped inside [AutoGluon](https://github.com/autogluon/autogluon); Mitra-v2 ([report](https://arxiv.org/abs/2609.04540)) adds a 2D-attention backbone and a much larger synthetic task distribution.
 - **[LimiX](https://github.com/limix-ldm-ai/LimiX)**: Open large structured-data models from StableAI / Tsinghua (LimiX-16M, LimiX-2M, and the 400M [LimiX-2](https://huggingface.co/stable-ai/LimiX-2)) covering classification, regression, imputation, and (in LimiX-2) causal-skeleton recovery.
 - **[Orion-MSP](https://github.com/Lexsi-Labs/Orion-MSP)** / **[Orion-BiX](https://github.com/Lexsi-Labs/Orion-BiX)**: Lexsi Labs' open tabular ICL models with multi-scale sparse attention and bi-axial attention respectively.
+- **[FTFM](https://github.com/machinelearningnuremberg/ftfm-official)**: Inference code for FTFM-1, a factorized tabular foundation model for classification (one contextual latent per row and per column). Weights: [josifgrabocka/ftfm](https://huggingface.co/josifgrabocka/ftfm) (CC BY-NC 4.0).
+- **[TabAbax](https://github.com/tababax-research/TabAbax)**: Inference code for TabAbax, a TabICLv2-derived tabular foundation model for classification and regression. Checkpoints: [tababax-ai/TabAbax](https://huggingface.co/tababax-ai/TabAbax) (CC BY-NC 4.0).
+- **[SIC](https://github.com/yayapa/sic)**: Code and checkpoint for Survival In-Context, a prior-fitted network for amortized survival analysis ([weights](https://huggingface.co/yayapa/sic)).
 - **[ConTextTab / SAP RPT-1](https://github.com/SAP-samples/sap-rpt-1-oss)**: SAP's semantics-aware tabular in-context learner trained on real-world tables with language-model embeddings for text cells.
 - **[TabDPT inference](https://github.com/layer6ai-labs/TabDPT-inference)**: Layer 6's inference code for TabDPT and TabDPT-Turbo.
 - **[TFM-Playground](https://github.com/automl/TFM-Playground)**: AutoML.org research playground for training and evaluating small tabular foundation models and their synthetic priors.
@@ -89,10 +92,8 @@ LTMs could serve as invaluable tools for:
 - **[Causilo](https://github.com/nums-ai/causilo)**: Nums AI's high-speed tabular foundation model for classification and regression (`pip install causilo`; [weights](https://huggingface.co/nums-ai/causilo)).
 - **[TabCausal](https://github.com/LAMDA-Tabular/TabCausal)**: LAMDA-Tabular's pretrained foundation model and inference package (`tabcausal`; [weights](https://huggingface.co/LAMDA-Tabular/TabCausal)) for zero-shot tabular causal discovery across observational and interventional tables.
 - **[LinearPFN](https://github.com/schiekiera/LinearPFN)**: Pretrained PFN for amortized Bayesian spike-and-slab variable selection with main effects and pairwise interactions ([weights](https://huggingface.co/schiekiera/LinearPFN)).
-- **[OFAG](https://github.com/Cloudy1225/OFAG)**: Pretrained PFN-style foundation model and checkpoint for zero-shot attributed graph clustering.
 - **[TabPrep](https://github.com/atschalz/tabprep)**: Lightweight feature-engineering pipeline that lifts tree, neural, and foundation models on TabArena.
 - **[TACTICL](https://github.com/Hebog/tfm_compression)**: Task-aware layer pruning + adapters for compressing tabular ICL models.
-- **[TFM Distillation](https://github.com/nums-ai/TFM_Distillation)**: Recipe and code for distilling tabular foundation models into fast neural or tree-based student predictors using observed and synthetic queries.
 - **[TabAlign](https://github.com/yoel-zeldes/tabalign)**: CPU-friendly activation alignment that maps partial-context TFM activations toward full-context teachers.
 - **[Test-Time Compute for TFMs](https://github.com/kanghui-learning/test-time-compute-for-tabular-foundation-models)**: Toolkit for TFM test-time compute across parameter-efficient adaptation (`DiagScale`), selective ensemble aggregation, and context retrieval.
 - **[Tabular Attention Benchmark](https://github.com/SAP-samples/tabular-attention-benchmark)**: SAP's reproducible benchmark for 2D row/column attention backends (Torch SDPA, cuDNN, FlashAttention-2/3/4, vLLM, SageAttention) on A100/H100/B200 GPUs.
@@ -211,7 +212,7 @@ LTMs could serve as invaluable tools for:
 
 - **TuneTables: Context Optimization for Scalable Prior-Data Fitted Networks** (ICML 2024)
   *Benjamin Feuer, Kelly Zhang, Jennifer J. Sun, Asma Ghandeharioun, Frank Hutter, et al.*
-  [Paper](https://arxiv.org/abs/2402.11137) | [Code](https://github.com/automl/TuneTables)
+  [Paper](https://arxiv.org/abs/2402.11137) | [Code](https://github.com/penfever/TuneTables)
   > Proposes "context optimization" (prompt tuning) to scale PFNs to larger datasets and improve performance by optimizing the input context.
 
 - **Scaling TabPFN: Sketching and Feature Selection for Tabular Prior-Data Fitted Networks** (NeurIPS 2023 Workshop)
@@ -606,7 +607,7 @@ LTMs could serve as invaluable tools for:
 
 - **Distillation of Tabular Foundation Models into Efficient Predictors** (arXiv, Oct 2026)
   *Minho Jeong, Dooho Lee, Jinmo Lee, Jaemin Yoo*
-  [Paper](https://arxiv.org/abs/2610.01435) | [Code](https://github.com/nums-ai/TFM_Distillation)
+  [Paper](https://arxiv.org/abs/2610.01435)
   > Uses the full labeled training set as teacher context and trains lightweight neural or tree students solely on teacher predictions over observed and synthetic queries, beating tuned-and-ensembled supervised students by 57–98 Elo on TabArena with 3.0–21.6× inference speedups.
 
 - **Parameter-Efficient Distributionally Robust Adaptation of Tabular Foundation Models under Subpopulation Shift (DR-TFM)** (arXiv, Oct 2026)
@@ -638,6 +639,56 @@ LTMs could serve as invaluable tools for:
   *Tianyang Zhou, Leman Akoglu*
   [Paper](https://arxiv.org/abs/2609.32898)
   > Shows that deeper TFM layers increasingly attend to nearby in-context outliers ("context pollution"), so exiting at an intermediate layer selected by a lightweight post-hoc router improves outlier detection by 4.7–7.3% on average while cutting inference compute up to 1.8×.
+
+- **TabAbax: A Tabular Foundation Model Technical Report** (Technical Report, Oct 2026)
+  *Zhixiong Cheng, Xiaoyun Gao, Shiyuan Han, Jingjing Suo, Zhengli Wang*
+  [Paper](https://arxiv.org/abs/2611.00562) | [Code](https://github.com/tababax-research/TabAbax) | [Model](https://huggingface.co/tababax-ai/TabAbax)
+  > A TabICLv2-based TFM whose changes are confined to the synthetic pretraining prior and a two-pass column-row encoder with learned Fourier scalar encoding. In the authors' evaluation it reaches 1,238 Elo on the 142-dataset BeyondArena suite (10th of 41 methods), 1,676 Elo on TabArena's 51-dataset suite (11th of 99, +115 over TabICLv2), and 2,024 Elo on TabArena regression (7th of 99, +336 over TabICLv2).
+
+- **FTFM: Factorized Tabular Foundation Models** (arXiv, Oct 2026)
+  *Josif Grabocka*
+  [Paper](https://arxiv.org/abs/2610.25558) | [Code](https://github.com/machinelearningnuremberg/ftfm-official) | [Model](https://huggingface.co/josifgrabocka/ftfm)
+  > Keeps cell-level state while factorizing computation through one contextual latent per row and one per column, so cells update via those latents instead of attending to every other cell. Reports competitive tabular classification on TabArena and BeyondArena. Released inference code covers classification.
+
+- **OrionMoE-v1.0: A Mixture-of-Experts Foundation Model for Tabular In-Context Learning** (arXiv, Oct 2026)
+  *Mohamed Bouadi, Nassim Bouarour, Aditya Tanna, Vinay Kumar Sankarapu*
+  [Paper](https://arxiv.org/abs/2610.20418)
+  > Compact TFM (OrionMoE-Small-v1.0) combining distribution-aware representations with dataset-conditioned sparse mixture-of-experts routing on a dual-axis transformer. Pretrained only on synthetic classification tasks from a structured causal prior; reported competitive with larger foundation models, especially on small-context and high-dimensional tables.
+
+- **Two Is Enough: Binary Classification Priors Suffice for Multi-Class In-Context Tabular Prediction** (arXiv, Oct 2026)
+  *Zhixiong Cheng, Shiyuan Han, Jingjing Suo, Zhengli Wang*
+  [Paper](https://arxiv.org/abs/2610.27569)
+  > Capping TabICLv2's pretraining class count at two still yields weights for zero-shot K-way classification, because class cardinality is set by the labels present in context rather than by a fixed output head. Reports 1590.1 Elo on the 38 TabArena classification datasets, above the official default at 1568.0.
+
+- **When, Where, How: Active In-Context Learning for Tabular Foundation Models** (arXiv, Nov 2026)
+  *Christian M. M. Frey*
+  [Paper](https://arxiv.org/abs/2611.07886)
+  > Studies how the value of diversity, predictive uncertainty, and target-aware information gain changes as a frozen TFM acquires labels. Across twenty benchmarks with two TFMs and gradient-boosted trees, diversity helps first, target-aware nearest-neighbor selection of which pool rows to label matters, and Expected Predictive Information Gain in Context retains on average 80–87% of chance-corrected full-data performance with 5–10% of the pool labeled on the eight largest pools.
+
+- **Interpretable by Design Tabular Prediction via In-Context Local Linear Learning** (arXiv, Oct 2026)
+  *Ran Eisenberg, Steven Berger, Ofir Lindenbaum*
+  [Paper](https://arxiv.org/abs/2610.39506)
+  > TICL³ retrieves similar training rows with a tabular foundation model, then predicts with a shared linear model plus a local linear model on the residuals, so the same coefficients make and explain the query. Across 386 classification benchmark-dataset evaluations it trails TabICLv2 by 1.1 percentage points and outperforms CatBoost in 266 evaluations.
+
+- **CCD: Context-Calibrated Open-Entity Out-of-Distribution Detection in In-Context Tabular Foundation Models** (arXiv, Nov 2026)
+  *Zhangkai Wu, Xu Zhang, Zhihao Hao, Zhihong Cui, Yongmin Yoo, Xianxun Zhu, Kaize Shi*
+  [Paper](https://arxiv.org/abs/2611.01489)
+  > Calibrates frozen-TFM confidence and distances by holding entities out of the in-context set, so a new entity of a known class is not scored as an unknown class. Introduces NEO-Tab (14 grouped and temporal tables) and reports that CCD beats 16 detectors on every metric in the paper, on three TFM backbones, with no OOD training data.
+
+- **Recall or Relearn? A Mixture of In-Context Experts for Recurring Concept Drift** (arXiv, Oct 2026)
+  *Zhangkai Wu, Xu Zhang, Zhihong Cui, Yiqi Wang, Yi Zhang*
+  [Paper](https://arxiv.org/abs/2610.36585)
+  > MICE is a training-free TFM learner for streams in which an old concept can return: closed segments are stored as contexts when the estimated extra error stays within a tolerance, and a fast level mixes those contexts with a FIFO window of recent labels. On the real streams in the study it has the highest mean accuracy of the policies compared.
+
+- **SurvICL: a Foundation Model for in-context Survival Analysis** (arXiv, Oct 2026)
+  *Julie Alberge, Linus Bleistein, Judith Abécassis, Marine Le Morvan, Gaël Varoquaux, David Holzmüller*
+  [Paper](https://arxiv.org/abs/2610.22242)
+  > Survival TFM pretrained on synthetic data from a proportional-odds prior and fit with quantile regression, using uncensored event times the generator can provide. On 63 datasets held out from design choices, inside a 103-dataset benchmark, it wins 82.9% of pairwise integrated-Brier comparisons (71.3% for the Cox model) with no tuning, and is reported as the first model to rank above Cox on small datasets.
+
+- **Survival In-Context: Amortized Bayesian Survival Analysis via Prior-Fitted Networks** (arXiv 2026)
+  *Dmitrii Seletkov, Paul Hager, Georgios Kaissis, Rickmer Braren, Daniel Rueckert, Raphael Rehms*
+  [Paper](https://arxiv.org/abs/2603.29475) | [Code](https://github.com/yayapa/sic) | [Model](https://huggingface.co/yayapa/sic)
+  > SIC approximates the Bayesian posterior predictive for survival under a synthetic prior that controls covariates and the time-event distribution. Individualized survival curves are predicted in one forward pass; on real survival datasets the report finds it competitive with or ahead of classical and deep survival models, particularly in small and medium data regimes.
 
 ### Synthetic Data & Generation
 
@@ -868,13 +919,33 @@ LTMs could serve as invaluable tools for:
 
 - **Towards One-for-All Foundation Model for Attributed Graph Clustering (OFAG)** (arXiv, Oct 2026)
   *Yunhui Liu, Xudong Jin, Kang Zhang, Danshuo An, Yu Xing, Te Song, Jia Liu, Tieke He*
-  [Paper](https://arxiv.org/abs/2610.07778) | [Code](https://github.com/Cloudy1225/OFAG)
+  [Paper](https://arxiv.org/abs/2610.07778)
   > A PFN-style foundation model for unsupervised attributed graph clustering with a dimension-agnostic signal-wise graph encoder pretrained on synthetic attributed graphs, clustering ten diverse benchmarks in a single forward pass over 6× faster than baselines.
 
 - **Valid for Free: Homophily-Gated Conformal Prediction for Training-Free Node Classification with Tabular Foundation Models** (arXiv, Oct 2026)
   *Nguyen Duy Long, Phung Minh Hien, Nguyen Trong Viet, Nguyen Thai Anh*
   [Paper](https://arxiv.org/abs/2610.08564)
   > First conformal reliability study of training-free TFM node classification (with TabICL), showing lower calibration error than temperature-scaled GCNs and introducing a homophily-gated diffusion score (HG-DAPS) that shrinks prediction sets on homophilous graphs while preserving finite-sample validity.
+
+- **Why Tabular Foundation Models Excel on Relational Data They Have Never Seen** (arXiv, Nov 2026)
+  *Linjie Xu, Yiqun Hu, Jixiang He, David Wipf*
+  [Paper](https://arxiv.org/abs/2611.02936)
+  > Frozen single-table TFMs, combined with parameter-free relational encoders and with no relational pretraining, remain competitive for predicting a target column in a relational database. The paper traces this to encoders that map relational effects onto fixed-length embeddings resembling the distributions the TFMs were trained on, so single-table posterior-predictive behavior transfers.
+
+- **Learning a Prior-Data Fitted Network for Graph Foundation Models via Structural Causal Model Priors (GSCM-PFN)** (arXiv, Oct 2026)
+  *Ziwei Zhang, Tianyin Liao, Chunyu Hu, Ge Lan, Nuo Xu, Yi Huang, Qingyun Sun, Xingxuan Zhang, Peng Cui, Jianxin Li*
+  [Paper](https://arxiv.org/abs/2610.38335)
+  > Graph PFN pretrained only on synthetic graphs from a joint feature-edge-label structural causal model, with a feature-permutation-invariant dual-path network. On 23 real-world benchmarks it outperforms conventional graph foundation models and earlier PFN-based graph models, without real-graph pretraining.
+
+- **StreamTab: Training-Free Temporal Link Prediction with Tabular Foundation Models** (arXiv, Nov 2026)
+  *Mingqi Yang, Renqi Wu*
+  [Paper](https://arxiv.org/abs/2611.09052)
+  > Featurizes each candidate pair by statistics of its past interactions and prompts a frozen, synthetic-pretrained TFM with recent interactions and negatives sampled to match the candidate regime. On thirteen datasets against 21 temporal-graph baselines, it records the highest average precision on twelve datasets under historical sampling and eleven under inductive sampling; matching the negative regime raises historical-sampling average precision by a median of 12.6 points.
+
+- **Path to Prior-Data Fitted Relational Models via Learned Latent Multi-table Representations** (arXiv, Oct 2026)
+  *Mohammad Sadeq Abolhasani, Viswanath Ganapathy*
+  [Paper](https://arxiv.org/abs/2610.23073)
+  > Pretrains the message-passing relational model Griffin on synthetic relational databases and feeds its latents to a frozen in-context predictor, with no training on the target task. On 16 real relational classification tasks, a curriculum from schema-guided to schema-agnostic synthetic data is the strongest synthetic-only setting, and appending it after real-data pretraining yields the best encoders in the study.
 
 ### Time Series & Sequential Data
 
@@ -989,6 +1060,16 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   *Johann Faouzi*
   [Paper](https://arxiv.org/abs/2610.06156)
   > Stacks twelve lightweight base classifiers across four time-series representation families and adaptively gates between weighted majority voting and TabICLv2 as an in-context meta-classifier, outperforming HIVE-COTE 2.0 across 142 UCR datasets.
+
+- **GAS-PFN: Graph-Aware Spatiotemporal Prior-Data Fitted Networks for Zero-Shot Traffic Forecasting** (arXiv, Oct 2026)
+  *Joseph Natter, Long Vu, Yifan Zhang, Bobin Deng, Kun Suo, Rui Wu*
+  [Paper](https://arxiv.org/abs/2610.37598)
+  > Encodes sampled road topology in the synthetic prior by random-walk diffusion, then runs two mask-conditioned passes through a shared Transformer for sensor dynamics and neighbor interactions. At a 90-minute horizon on six benchmarks, it reduces MSE by 34.0% on average relative to TimePFN and by 27.7% relative to four general-purpose zero-shot forecasters.
+
+- **Missingness-Aware Prior-Data Fitted Network for Irregular Clinical Time-Series** (arXiv, Nov 2026)
+  *Hadi Mehdizavareh, Gabriele Santangelo, Giovanna Nicora, Pietro Bosoni, Simon Lebech Cichosz, Arianna Dagliati, Arijit Khan, Riccardo Bellazzi*
+  [Paper](https://arxiv.org/abs/2611.01851)
+  > Learns a diffusion prior over joint laboratory values and observation masks, then trains a PFN on context-query tasks sampled from that prior so missingness is part of the task. With no target-domain adaptation it is the best reported model for imputation and forecasting on held-out MIMIC-III and external eICU; overall/macro nRMSD runs from 0.193/0.186 (internal imputation) to 0.297/0.297 (external forecasting).
 
 **Selected time-series foundation model papers from the ICML 2026 FMSD Workshop** (the workshop unifies the tabular and time-series communities):
 
@@ -1134,6 +1215,31 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2610.12537)
   > A continuous-time causal PFN trained on a synthetic market prior where hidden informational flow confounds order flow and price, deconfounding zero-shot metaorder market impact in ABIDES simulations and equity/crypto limit-order books.
 
+- **Debiased Prior-Data Fitted Networks for Amortized Bayesian Semi-Parametric Inference** (arXiv, Oct 2026)
+  *Valentyn Melnychuk, Emil Javurek, Stefan Feuerriegel*
+  [Paper](https://arxiv.org/abs/2610.28314)
+  > An idealized PFN for a finite-dimensional semi-parametric target, such as a mean under missingness or a causal effect, can concentrate more slowly as its prior becomes richer because the rate depends on latent nuisance functions. Label correction and prior correction based on efficient influence functions restore the rate of frequentist bias-corrected estimators, with Bernstein–von Mises and minimax guarantees under further assumptions.
+
+- **A Foundation Model for Policy In-Context Longitudinal Causal Effect Estimation (PICLE-PFN)** (arXiv, Oct 2026)
+  *Wenxin Chen, Kyra Gan, Mingyu Lu, Zilin Jing, Fei Wang, Hoifung Poon, Tristan Naumann, Peniel Argaw*
+  [Paper](https://arxiv.org/abs/2610.32863)
+  > Pretrained on synthetic longitudinal structural causal models to predict conditional average potential outcomes for dynamic policies supplied as in-context history-decision demonstrations. One forward pass and no per-dataset tuning; on synthetic and semi-synthetic longitudinal benchmarks it reports competitive RMSE, improved uncertainty calibration, and lower deployment time than estimators trained separately per dataset.
+
+- **Residual-Based Causal Discovery via Pretrained In-Context Quantile Regression (Loscar)** (arXiv, Oct 2026)
+  *Daniel Klippert, Quang Nhat Huynh, Alexander Marx*
+  [Paper](https://arxiv.org/abs/2610.29530)
+  > Extends RESIT from additive noise models to location-scale noise models by estimating conditional mean and scale with quantile regression, so a pretrained tabular foundation model can be used as the plug-in estimator. On bivariate and multivariate causal-discovery benchmarks, in-context quantile regression outperforms feasible generalized least squares with flexible function classes, especially when causes are multivariate.
+
+- **Causal graph fusion across incomplete cohorts and causal steering of tabular foundation models** (arXiv, Nov 2026)
+  *Yanke Li, Dhiyaa Al Jorf, Ayoube Ighissou, Anke Scheel-Sailer, Robert Riener, Diego Paez-Granados*
+  [Paper](https://arxiv.org/abs/2611.09400)
+  > Learns a partial ancestral graph on variables shared across incomplete cohorts, fuses it into each cohort graph, and uses Markov blankets to guide re-imputation; the resulting graph is then compiled into the attention of a frozen TFM at inference. Fusion beats pooled and per-cohort discovery baselines in every missingness and heterogeneity condition tested, and steering improves discrimination under distribution shift where a random graph does not.
+
+- **Prior-Data Fitted Networks for In-Context Off-Policy Evaluation (InCOPE)** (arXiv, Oct 2026)
+  *Shuguang Yu, Ting Li, Fan Zhou*
+  [Paper](https://arxiv.org/abs/2610.34035)
+  > Pretrains a PFN on synthetic off-policy-evaluation tasks over Markov decision processes and behavior-target policy pairs, with exact target-policy values as labels. For a new tabular decision problem it predicts the target policy's expected return from the behavior data, the target policy, and known task settings, without parameter updates. Evaluated on four tabular domains, including a semi-synthetic clinical setting.
+
 ### Physical Systems & ODEs
 
 - **Decoupled-Value Attention for Prior-Data Fitted Networks: GP Inference for Physical Equations** (NeurIPS 2025)
@@ -1263,11 +1369,21 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2610.17994)
   > Draws synthetic symbolic-regression inputs from a tabular foundation model prior with bottom-up constants and heteroscedastic/structured noise, then aligns the pretrained model with RL post-training; achieves the best mean test $R^2$ rank on the black-box track of SRBench 2.0.
 
+- **Beyond Foundation Models: PFN Priors Improve Tabular Hyperparameter Optimization (PriorTune)** (arXiv, Nov 2026)
+  *Artem Chistyakov, Renat Sergazinov, Artem Babenko*
+  [Paper](https://arxiv.org/abs/2611.05141)
+  > Selects a subset of hyperparameter configurations by their win rate on datasets sampled from a published PFN prior, then fits only that subset on a new real dataset. Reports that LightGBM with TabPrep features under these configurations ranks above TabPFN-3 and RealMLP on the full BeyondArena benchmark while remaining cheaper at inference.
+
+- **Anisotropic Trust Region Warping for Prior-Data Fitted Networks in Bayesian Optimisation** (arXiv, Oct 2026)
+  *Samuel Younger, Tinkle Chugh, George De Ath*
+  [Paper](https://arxiv.org/abs/2610.37737) | [Code](https://github.com/youngers2006/Trust-Region-Warping-For-PFNs)
+  > A PFN surrogate's log-likelihood falls behind a refitted Gaussian process when the objective lengthscale moves away from the meta-training prior, and optimisation suffers with it. ATR warping rescales inputs by kernel-target-alignment lengthscales inside a trust region, without retraining the network or changing its inference cost, and improves optimisation at both extremes of the lengthscale range on Matérn-3/2 draws.
+
 ### Architectures & Training
 
 - **MotherNet: A Foundational Hypernetwork for Tabular Classification** (arXiv 2023)
   *Samuel Müller, Frank Hutter*
-  [Paper](https://arxiv.org/abs/2312.08598) | [Code](https://github.com/automl/MotherNet)
+  [Paper](https://arxiv.org/abs/2312.08598)
   > A hypernetwork trained to generate the weights of a child network for a new tabular task in a single forward pass.
 
 - **TabularFM: An Open Framework For Tabular Foundational Models** (arXiv 2024)
@@ -1384,6 +1500,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2609.25541)
   > Identifies how to prevent representation collapse when adding a Joint-Embedding Predictive Architecture (JEPA) latent objective to synthetic-prior TFM pretraining, and rigorously compares plateau-converged JEPA against value-only pretraining across 147 real datasets.
 
+- **Structured Priors: Towards an algebra of component priors for prior-data fitted networks** (arXiv, Nov 2026)
+  *Thomas Bartz-Beielstein*
+  [Paper](https://arxiv.org/abs/2611.04056)
+  > Replaces a hand-weighted mixture generator with named component priors composed by mixture, convolution, amplitude scaling, local transform, and projection, with proved algebraic laws and an implementation in the macl2l package. A mixture of small components matches or beats every individual component on seven of eight open regression benchmarks; a pre-registered test that averaged component networks would be the Bayes predictor for the mixture failed, because the networks rarely identified which component had generated the data.
+
 ### Theory & Analysis
 
 - **Statistical Foundations of Prior-Data Fitted Networks** (ICML 2023)
@@ -1488,7 +1609,7 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
 
 - **Dataset Inference for Data Provenance and Privacy Auditing in Tabular Foundation Models** (ICML 2026 FMSD Workshop, Spotlight)
   *Dariush Wahdany, Jesse C. Cresswell, Naiqing Guan, Atiyeh Ashari Ghomi, Franziska Boenisch, Adam Dziedzic*
-  [OpenReview](https://openreview.net/forum?id=u2uOPq1u6I)
+  [Paper](https://arxiv.org/abs/2610.24278) | [OpenReview](https://openreview.net/forum?id=u2uOPq1u6I)
   > Uses dataset inference to audit data provenance and privacy in tabular foundation models.
 
 - **TabPATE: Differentially Private Tabular In-Context Learning Without Public Data** (ICML 2026 FMSD Workshop)
@@ -1666,6 +1787,36 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2609.12136)
   > Characterizes when prequential adaptation of frozen TFMs under temporal drift helps or fails via two theoretical identifiability/representation walls and a streaming diagnostic protocol.
 
+- **When Does Depth Help? Understanding Layerwise Inference in Tabular Foundation Models** (arXiv, Oct 2026)
+  *Wenwen Gong, Haotian Gu, Zhen Yang, Jiaying Ma, Hanqing Zhang, Zhongshen Wang, Jingjun Wang, Shouyi Xu, Wei Wang*
+  [Paper](https://arxiv.org/abs/2610.19814)
+  > Reads all 24 in-context layers of TabPFN-3 on 272 classification datasets, and related representation dynamics in four further TFMs. Later layers follow an expansion-compression trajectory tied to class-prototype separation; repeating a single pretrained block or perturbing layer order reduces accuracy on average, so early readability of the prediction does not make later layers uniformly optional.
+
+- **TabCUQ: Context-Uncertainty Quantification for Tabular Foundation Models** (arXiv, Oct 2026)
+  *Yuebei Shi, Molei Liu, Zijian Guo*
+  [Paper](https://arxiv.org/abs/2610.39558)
+  > Separates limited-context bias from variation across the small labeled context when a TFM estimates conditional outcomes or group average treatment effects, by injecting noise into observed outcomes. For a kernel-regression analogue the intervals are asymptotically valid pointwise; on seven real tasks they improve coverage of reference functions fit on much larger samples.
+
+- **On Data Scaling in Tabular ML: More Data, Better Generalization?** (arXiv, Oct 2026)
+  *Ivan Rubachev, Nikita Lazarev, Artem Babenko*
+  [Paper](https://arxiv.org/abs/2610.26794)
+  > Compares scaling on eight real tabular datasets with up to about ten million training rows, retaining natural distribution shift and using random splits as a control. Gradient-boosted trees and MLPs scale similarly; recent TFMs gain more consistently from larger contexts, but under stronger shift, adding shift-representative rows to the context does not prevent deterioration as the training set grows.
+
+- **Amortized Nonlinear Variable Selection with Prior-Data Fitted Networks (MambaPFN)** (arXiv, Nov 2026)
+  *Jin Zhu, Junxian Zhu*
+  [Paper](https://arxiv.org/abs/2611.04848)
+  > Transformer PFN that maps a dataset to posterior inclusion probabilities for model-agnostic nonlinear variable selection and is applied without parameter updates. The report describes continued gains from more pretraining datasets and larger models, and on a Facebook comments dataset the selected subset is the smallest while predictive performance improves on the best baselines by about 20%.
+
+- **SelectPFN: Amortized Bayesian Variable Selection for Sparse Nonlinear Regression with Prior-Data Fitted Networks** (arXiv, Oct 2026)
+  *Bin Luo*
+  [Paper](https://arxiv.org/abs/2610.21950)
+  > One forward pass returns posterior inclusion probabilities and predictions computed only from sampled subsets, so excluded inputs cannot affect the output. Interleaving knockoff columns gives finite-sample false-discovery-rate control. On out-of-prior nonlinear designs with up to 500 variables, area under the precision-recall curve improves by 0.23–0.28 over the lasso, BART, DART, LassoNet, and a group-penalized sparse neural network.
+
+- **Prior-data fitted networks for variable selection** (arXiv, Nov 2026)
+  *Omar Melikechi*
+  [Paper](https://arxiv.org/abs/2611.05966)
+  > Two PFNs for Bayesian variable selection that emit posterior inclusion probabilities without posterior samples or a data-specific model: CD-PFN for conditional dependencies, and PC-PFN for parents and children in a causal graph. In the semi-synthetic and real-data experiments they often outperform existing variable-selection methods.
+
 ### Applications & Domain Studies
 
 TFMs applied outside classic tabular benchmarks, and domain-specific evaluations that report where they win or fail.
@@ -1749,6 +1900,26 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   [OpenReview](https://openreview.net/forum?id=kiupx7dsOf)
   > Real-time nowcasting of food inflation with TFMs.
 
+- **SNAPPerf: Software-Aware Tabular Foundation Model for Retraining-Free Performance Prediction of Configurable Systems** (arXiv, Oct 2026)
+  *Amine Lbath, Massih-Reza Amini, Vadim Okun*
+  [Paper](https://arxiv.org/abs/2611.00944)
+  > A TFM pretrained once on synthetic data for the performance of configurable software. A new system, version, platform, or workload needs only a few measured configurations as context. Across 39,866 configurations from 12 systems it cuts prediction error by 38% versus the previous state of the art at the same budget and by 25% versus the best general-purpose TFM, and matches that previous accuracy with 54% fewer measurements on average.
+
+- **Tabular Foundation Models Dramatically Outperform Bespoke Photometric Redshift Estimators** (arXiv, Oct 2026)
+  *Biprateep Dey, Joshua S. Speagle*
+  [Paper](https://arxiv.org/abs/2610.39332)
+  > On a standard photometric-redshift benchmark, TFMs that emit a full redshift distribution in one forward pass beat bespoke estimators under both representative and biased spectroscopic training sets. They match or exceed baselines trained on more than 40,000 galaxies when given 1,000 in-context examples, and the gap is largest when calibration spectra are scarce.
+
+- **Learning by Examples: Power Grid Steady State Analysis with a Tabular Foundation Model** (arXiv, Oct 2026)
+  *Olayiwola Arowolo, Oluwadara Adedeji, Peter Palensky, Jochen L. Cremer*
+  [Paper](https://arxiv.org/abs/2610.20462)
+  > Uses frozen TabPFN, with no power-system pretraining and no fine-tuning, for power-flow prediction, N-k contingency screening, and voltage-stability margins on 118- and 2000-bus systems. It matches or beats task-specific neural baselines in several of those settings; on 118-bus power flow a variant reaches \(1\times 10^{-3}\) pu voltage-magnitude error and \(0.30^\circ\) angle error.
+
+- **Molecular Prior Networks** (arXiv, Nov 2026)
+  *Pawel Gomoluch, Anthony Bradley*
+  [Paper](https://arxiv.org/abs/2611.05103)
+  > In-context transformer for small-molecule affinity, trained on thousands of existing affinity datasets so a query molecule is scored from labeled support molecules in one forward pass. On the smallest support sets it matches the state of the art on the regression version of FS-Mol and is faster than per-task training; a kernel-regression ablation in the same learned features explains only part of the accuracy.
+
 **Healthcare**
 
 - **Retrieval-aligned Tabular Foundation Models Enable Robust Clinical Risk Prediction in Electronic Health Records Under Real-world Constraints** (arXiv 2026)
@@ -1775,6 +1946,11 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   *Payal Chandak, Gregory Kondas, Liat Antwarg Friedman, Isaac Kohane, Matthew McDermott*
   [Paper](https://arxiv.org/abs/2603.07900) | [OpenReview](https://openreview.net/forum?id=2Dammq2Yt0)
   > An EHR foundation model that answers structured clinical queries directly instead of sampling synthetic patient futures, making zero-shot prediction promptable and cheap.
+
+- **Tabular foundation models are not a shortcut to calibrated clinical risk prediction: a pre-registered simulation against the true risk** (arXiv, Oct 2026)
+  *Ebrahim Khaled Ebrahim*
+  [Paper](https://arxiv.org/abs/2610.39065)
+  > Compares TabPFN-3.5, TabICLv2, and Mitra-v2 with Firth logistic regression plus intercept correction in 58 pre-registered scenarios where the true risk is known, then on four clinical datasets. Calibration slopes match that logistic baseline within the pre-registered margin in 36 or 37 of 48 core scenarios; on real data, no model keeps calibration when the event rate changes across populations, and recalibration on 500 local patients largely repairs it.
 
 **Economics, finance & marketing**
 
@@ -1866,7 +2042,7 @@ Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147)
 
 ## Tutorials & Talks
 
-- **[Getting Started with PFNs](https://github.com/automl/PFNs/blob/main/Tutorial_1_Basics.ipynb)**: Official tutorial notebook from the PFNs repository.
+- **[Getting Started with PFNs](https://colab.research.google.com/drive/12YpI99LkuFeWcuYHt_idl142DqX7AaJf)**: Official getting-started Colab linked from the PFNs repository, for training a ridge-regression PFN.
 - **[TabPFN-3.5 model report](https://priorlabs.ai/technical-reports/tabpfn-3-5)** (Sep 2026): Prior Labs' flagship write-up. Live deep dive with Frank Hutter on Sep 28; [hackathon](https://x.com/prior_labs/status/2100151981444854150) through Oct 6 (DGX Spark / Jetson AGX Orin / RTX 4090).
 - **[FMSD 2025 talks on SlidesLive](https://slideslive.com/icml-2025/1st-workshop-on-foundation-models-for-structured-data-fmsd)**: Recorded invited talks and spotlights from the 1st Workshop on Foundation Models for Structured Data (ICML 2025).
 - **Invited talks at FMSD @ ICML 2026** ([workshop page](https://icml.cc/virtual/2026/workshop/54066)):
@@ -1909,4 +2085,4 @@ Contributions are welcome! Please feel free to submit a Pull Request to add new 
 4. Submit a PR.
 
 ---
-*Last updated: October 2026*
+*Last updated: November 2026*
