@@ -101,6 +101,8 @@ LTMs could serve as invaluable tools for:
 - **[TabPFN IML](https://github.com/david-rundel/tabpfn_iml)**: Interpretability methods (feature effects, importance, Shapley) specialised for TabPFN.
 - **[GeneICL](https://github.com/BoevaLab/GeneICL)**: Tabular foundation model for bulk transcriptomics classification, regression, and survival (`pip install geneicl`). Checkpoints ship with the package.
 
+- **[TabOmics](https://github.com/lbotecur/tabomics)**: Open 7.3M-parameter tabular foundation model for wide, low-sample tables, pretrained on synthetic data (`pip install git+https://github.com/lbotecur/tabomics.git`). Weights: [v2.5](https://huggingface.co/lbotecur/tabomics-v2.5), [v2](https://huggingface.co/lbotecur/tabomics-v2).
+
 ## Papers
 
 ### Foundations & Position Papers
@@ -696,6 +698,11 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2610.17065) | [Code](https://github.com/soda-inria/tile) | [Data](https://huggingface.co/datasets/inria-soda/TILE-benchmark)
   > An interface that makes LLM features useful to tabular foundation models on tables with free-form strings: row serialization for cross-column context, intermediate-layer extraction, columnar pooling, and a bypass so numbers and categories skip the LLM. Paired with TFMs, it beats the strongest baseline on 90% of splits across 100 datasets, with gains for 7 LLMs and 10 tabular learners, and ranks first on STRABLE's 108 datasets.
 
+- **TabOmics: A Small, Open Tabular Foundation Model for Wide Omics Data** (arXiv, Nov 2026)
+  *Andrea López-García, Luis Bote-Curiel, Francisco Javier Gimeno-Blanes, José Luis Rojo-Álvarez, Sergio Muñoz-Romero*
+  [Paper](https://arxiv.org/abs/2611.15329) | [Code](https://github.com/lbotecur/tabomics) | [v2.5](https://huggingface.co/lbotecur/tabomics-v2.5) | [v2](https://huggingface.co/lbotecur/tabomics-v2)
+  > A 7.3M-parameter family pretrained only on synthetic tables. One forward pass uses every feature kept after preprocessing and returns predictions, attention-derived feature-importance scores, and test-sample embeddings. On 46 high-dimensional, low-sample classification tasks, TabOmics v2.5 with eight ensemble members reports the highest mean AUROC among the models compared (0.943) and outperforms eight-member TabPFN-3.5 on 32 tasks with about 30 times fewer parameters. A single member reaches mean AUROC 0.941, against 0.942 for eight-member TabPFN-3.5, with no significant paired difference under the paper's task-level analysis. On synthetic tables, feature recovery is similar to TabPFN-Wide, and predictions stay above chance at 30,000 features. On the breast-cancer tasks, top-ranked genes include PAM50 genes that define the subtype labels; the authors treat that as concordance with the label definition rather than independent biological validation.
+
 ### Synthetic Data & Generation
 
 - **TabuLa: Harnessing Language Models for Tabular Data Synthesis** (arXiv 2023)
@@ -767,6 +774,11 @@ LTMs could serve as invaluable tools for:
   *Jayoung Kim, Sanghyun Hong, Noseong Park*
   [Paper](https://arxiv.org/abs/2610.15699)
   > An in-context diffusion model that generates an arbitrary set of mixed-type target cells in an unseen, possibly incomplete table, with no table-specific training. The pretraining objective bounds the conditional negative log-likelihood and the divergence from the posterior predictive for any target set. Across 48 real-world tables it ranks first on all evaluated generative tasks against 20 baselines.
+
+- **GenPFN: An In-Context Tabular Foundation Model Approach for Augmenting Small Datasets in Engineering** (arXiv, Nov 2026)
+  *Noah J. Bagazinski, Cyril Picard, Faez Ahmed*
+  [Paper](https://arxiv.org/abs/2611.14804)
+  > A training-free candidate generator for small engineering datasets. A frozen TabPFN classifier scores context designs as desired or undesired; GenPFN interpolates desired designs and refines candidates with gated classifier gradients and Gaussian noise, then adds evaluated designs to the context used for regression. Across fourteen problems, including a 44-parameter hull, GenPFN with TabPFN v1 reports higher class satisfaction and lower realism distance than the adversarial, variational-autoencoder, and diffusion generators tested; the variational autoencoder provides greater coverage and diversity. Relative to SMOTE it reports lower coverage distance and greater diversity. Among the observed paired regression fits, augmentation reduces estimated AutoGluon validation mean squared error by 62.1% relative to context-only training. In a hull-stern case study, 99.3% of generated candidates are propeller-compatible, against 1.4% of randomly sampled context designs.
 
 ### Graph & Relational Data
 
@@ -1251,6 +1263,26 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2610.34035)
   > Pretrains a PFN on synthetic off-policy-evaluation tasks over Markov decision processes and behavior-target policy pairs, with exact target-policy values as labels. For a new tabular decision problem it predicts the target policy's expected return from the behavior data, the target policy, and known task settings, without parameter updates. Evaluated on four tabular domains, including a semi-synthetic clinical setting.
 
+- **FADO: Learning Causal Explanations with Prior-Fitted Networks** (arXiv, Nov 2026)
+  *Seth Flaxman, Jess Carr, Annabel Jakob, Marek Masiak, Dino Sejdinovic*
+  [Paper](https://arxiv.org/abs/2611.15607) | [Code](https://github.com/MLGlobalHealth/FADO) | [Demo](https://mlgh.net/fado-demo/)
+  > A prior-fitted network trained on synthetic structural causal models to predict, from a purely observational table, the feature intervention effect: expected outcome with a feature set to +1, minus the expected outcome with that feature set to −1. Ground-truth effects are available only during pretraining. On real, synthetic, and semi-synthetic data, with and without hidden confounders, the report finds better explanations than predictive attribution in settings with proxies, confounders, colliders, and placebos, and also compares the method with causal inference estimators.
+
+- **MediPFN: Amortized In-Context Nuisance Learning and Inference for Causal Mediation Analysis** (arXiv, Nov 2026)
+  *Shi Bo, Jiaming Hu*
+  [Paper](https://arxiv.org/abs/2611.13219)
+  > Adapts a pretrained tabular foundation model to the nuisance functions of causal mediation analysis and combines those predictions in a cross-fitted influence-function estimator. A separate head, trained on simulated tables with known indirect effects, learns quantiles of the estimator's standardized error; supervised fine-tuning, symmetrization, and independent calibration then produce a confidence interval. The paper gives coverage bounds under standard assumptions. In the experiments, coverage is closer to the nominal level than several comparators, and uncertainty quantification runs 59.1 times faster than bootstrap in matched comparisons.
+
+- **Does Predictive Performance Translate to Causal Performance? Evaluating tabular foundation models as nuisance learners for causal effect estimation** (arXiv, Nov 2026)
+  *Andrew R Weckstein, Issa J Dahabreh, Marinka Zitnik, Sonia Hernández-Díaz, Sebastian Schneeweiss*
+  [Paper](https://arxiv.org/abs/2611.11381)
+  > Tests TabPFN and Mitra as in-context nuisance learners (propensity scores and outcome regressions) inside doubly robust estimators of average causal effects, with and without cross-fitting. Under simple parametric processes they are competitive with correctly specified parametric regressions and with ensembles that contain them. In more complex synthetic and semi-synthetic settings they outperform the conventional learners evaluated, including richly specified Super Learner ensembles, on both point accuracy and uncertainty quantification. As the sample size grows, only these two prior-fitted networks consistently approach nominal confidence-interval coverage. At n = 200, and in the higher-dimensional semi-synthetic settings, coverage without cross-fitting is poor; for the prior-fitted networks the paper traces that to propensity-score overfitting consistent with in-sample memorization of treatment labels.
+
+- **From Forecasting to World Modeling: Can Temporal Foundation Models Recover Causal Response?** (NeurIPS 2026 FMTS Workshop, non-archival)
+  *Juwon Hong, Minha Hwang, Venkatesh Shankar*
+  [Paper](https://arxiv.org/abs/2611.15009) | [Data](https://huggingface.co/datasets/jean-jsj/CausalDemand)
+  > Evaluates released tabular and time-series foundation models, and a foundation model pretrained to estimate causal effects, on whether an accurate sales forecast implies an accurate predicted effect of price. On simulated data with a known effect, and on real retail sales, forecast accuracy does not indicate effect accuracy. For the tabular foundation models, additional context improves forecasts but not the predicted effect of price. Instrumental variables reduce that error only when supplied in a specific form, and increase it for every model under confounding when supplied as raw instruments.
+
 ### Physical Systems & ODEs
 
 - **Decoupled-Value Attention for Prior-Data Fitted Networks: GP Inference for Physical Equations** (NeurIPS 2025)
@@ -1272,6 +1304,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   *Jaehyeon Park, Mingu Kang, Dongseok Lee, Woojin Cho, Kookjin Lee, Anthony Gruber, Youngjoon Hong, Noseong Park*
   [Paper](https://arxiv.org/abs/2610.13334)
   > A PFN-style neural PDE solver pretrained on noisy approximate solution fields from physics-informed neural networks, approximating the posterior predictive mean of 2D PDE solutions in context with zero gradient updates and flexible spatial query locations.
+
+- **PhysICL: In-Context Learning of Physical Fields on Unstructured Meshes from Procedural Priors** (arXiv, Nov 2026)
+  *Fabien Casenave*
+  [Paper](https://arxiv.org/abs/2611.15965)
+  > One checkpoint, pretrained only on procedural tasks, predicts physical fields and quantiles on each query mesh from labeled simulations, with no weight update. A task may vary the number of context examples, scalar inputs, input and output fields, and the mesh size and connectivity. The prior draws generic laws and boundary-element models on morphed 2D and 3D template meshes, evaluated only at the points the model samples. On five PLAID datasets held out of pretraining, field error falls as the context grows and, from K = 32, is below the nearest context simulation on every dataset and context draw. It matches per-dataset reduced-order models on two of those datasets and trails them where the fields are low-rank. On AhmedML surfaces, with a median of 1.1 million nodes (twenty times the largest pretraining mesh), fixed spatial budgets keep peak GPU memory at K = 64 to 4.27 GiB. Fine-tuning on procedural tasks that reproduce the geometry and loads of 2D_MSHE, without any of that dataset's outputs and at a tenth of the pretraining cost, divides the stress error by 2.7.
 
 ### Optimization
 
@@ -1357,8 +1394,8 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
 
 - **Thompson Sampling using Prior-fitted Diffusion Transformers** (NeurIPS 2026)
   *Sihwa Park, Jingsen Zhu, Vinamr Jain, Sheng-Yen Chou, Alexander Terenin*
-  [OpenReview](https://openreview.net/forum?id=hRNiI7uR2f)
-  > Performs Thompson sampling for black-box optimization using prior-fitted diffusion transformers.
+  [Paper](https://arxiv.org/abs/2611.14656) | [OpenReview](https://openreview.net/forum?id=hRNiI7uR2f) | [Code](https://github.com/sihwa-park/PFN-Thompson-Sampling)
+  > Prior-fitted diffusion transformers that draw Thompson samples in context for continuous black-box optimization, after pretraining on practical non-Gaussian priors, including priors over unimodal functions. The paper quantifies the tradeoff between model size and the number of pre-training iterations, and reports improved performance relative to pipelines built on Gaussian processes.
 
 - **FoMEMO: Towards Foundation Models for Expensive Multi-objective Optimization** (NeurIPS 2026)
   *Yiming Yao, Fei Liu, Liang Zhao, Xi Lin, Yilu Liu, Qingfu Zhang*
@@ -1392,7 +1429,7 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
 
 - **Out-of-the-Box Tabular Foundation Models for Bayesian Optimization in Materials Discovery** (AI4Mat @ NeurIPS 2026)
   *Klemens Flöge, Simon Bing, Leo Grinsztajn, Eliott Kalfon, Lennart Purucker, Noah Hollmann, Frank Hutter*
-  [OpenReview](https://openreview.net/forum?id=y7ZFsfh2Uy) | [NeurIPS](https://neurips.cc/virtual/2026/167775) | [Code](https://github.com/PriorLabs/matsci-bo-bench)
+  [Paper](https://arxiv.org/abs/2611.12491) | [OpenReview](https://openreview.net/forum?id=y7ZFsfh2Uy) | [NeurIPS](https://neurips.cc/virtual/2026/167775) | [Code](https://github.com/PriorLabs/matsci-bo-bench)
   > Evaluates TabPFN and TabICL as out-of-the-box surrogates for Bayesian optimization on two standard materials-science benchmarks, against Gaussian processes, random forests, and CatBoost. The TFMs are competitive across the tasks as untuned models that were not trained for active learning.
 
 ### Architectures & Training
@@ -1838,6 +1875,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2611.05966)
   > Two PFNs for Bayesian variable selection that emit posterior inclusion probabilities without posterior samples or a data-specific model: CD-PFN for conditional dependencies, and PC-PFN for parents and children in a causal graph. In the semi-synthetic and real-data experiments they often outperform existing variable-selection methods.
 
+- **Beyond Row-Level Prediction: Evaluating and Learning Composition for Reusable Table Representations** (arXiv, Nov 2026)
+  *Ali Younes, Saeed Ghoorchian, Maximilian Schambach, Georgia Chalvatzaki, Johannes Höhne*
+  [Paper](https://arxiv.org/abs/2611.14697)
+  > A benchmark of table-level embeddings on consistency under partial views, discriminability across label granularities, robustness to benign perturbations, and efficiency. Across twelve methods, lightweight schema and text fingerprints are among the strongest. Mean, max, and three other parameter-free pools of TabPFN and ConTextTab states trail those fingerprints, despite both models being strong row-level predictors. Learning only the composition rule over frozen ConTextTab cell states, with support-conditioned distribution matching, raises the Spearman correlation between embedding similarity and partial-view overlap from 0.04 to 0.43–0.50 on synthetic data and improves triplet ranking, clustering, and retrieval, with smaller systematic gains on real data.
+
 ### Applications & Domain Studies
 
 TFMs applied outside classic tabular benchmarks, and domain-specific evaluations that report where they win or fail.
@@ -1941,6 +1983,21 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   [Paper](https://arxiv.org/abs/2611.05103)
   > In-context transformer for small-molecule affinity, trained on thousands of existing affinity datasets so a query molecule is scored from labeled support molecules in one forward pass. On the smallest support sets it matches the state of the art on the regression version of FS-Mol and is faster than per-task training; a kernel-regression ablation in the same learned features explains only part of the accuracy.
 
+- **An Evaluation of Tabular Foundation Models as Training-Free World Models** (arXiv, Nov 2026)
+  *Xian Yeow Lee, Ryoichi Takase, Ahmed Farahat*
+  [Paper](https://arxiv.org/abs/2611.11921)
+  > Asks whether pretrained TabFM can act as a training-free dynamics model by casting next-state prediction as in-context regression over transition pairs. On synthetic dynamical systems and robot locomotion, TabFM is more accurate than LSTMs and MLPs trained from scratch on the same limited transitions in almost all settings. Among regressors fit to that same data it is the most accurate on locomotion, while a Gaussian process is more accurate on smooth low-dimensional systems. Models trained on the full dataset remain substantially more accurate on most systems. Autoregressive rollouts with a short context fall to a trivial baseline; with a long context they improve substantially and, on one locomotion task, exceed a trained LSTM. Inference is about three orders of magnitude slower than an LSTM. The authors' conclusion is that these training-free priors help when data are scarce and the context is long enough, and that they do not yet replace trained world models for planning.
+
+- **Subsurface schematisation from sparse CPT data using the tabular foundation model TabPFN** (arXiv, Nov 2026)
+  *Taiga Saito, Fabian Campos Montero, Bruno Zuada Coelho, Ana Martins Teixeira, Stephen Wu, Timo Schweckendiek, Yu Otake*
+  [Paper](https://arxiv.org/abs/2611.16088) | [Code](https://github.com/tigtie09/tabpfn-for-subsurface-schematisation)
+  > Uses TabPFN, with no geotechnical fine-tuning and no predefined layer boundaries, to reconstruct two-dimensional subsurface sections from grid coordinates and soil behaviour type index values at sparse cone penetration tests. On synthetic sections its mean error is close to SchemaGAN, a conditional GAN trained on synthetic geotechnical sections, and at two field sites in the Netherlands its mean error is lower than SchemaGAN and the reference interpolators. On the synthetic sections, mean absolute error falls at each tested increase in CPT count, and baseline pointwise prediction intervals have mean coverage close to nominal. Fine-tuning on the synthetic sections used to train SchemaGAN improves synthetic test accuracy and raises mean error at both field sites.
+
+- **Accurate predictions of properties of energetic materials with tabular foundation models** (arXiv, Nov 2026)
+  *Vagn Krister Nes Glomsrud, Mathias Bynke, Lars Henry Berge Olsen, Dennis Christensen*
+  [Paper](https://arxiv.org/abs/2611.14462)
+  > Untuned TabPFN predicts impact sensitivity, decomposition temperature, and crystal density of energetic materials. It outperforms the best published models for all three properties, and tuned XGBoost, random forests, and Gaussian processes, both on hand-crafted molecular descriptors and on Chemprop message-passing embeddings. On all three properties, TabPFN on Chemprop's own embedding is more accurate than Chemprop's predictions, and TabPFN is more than an order of magnitude faster than XGBoost. Because it predicts a full target distribution, the paper compares that uncertainty with the empirical distribution of compounds that were measured more than once, and ranks features with Shapley values.
+
 **Healthcare**
 
 - **Retrieval-aligned Tabular Foundation Models Enable Robust Clinical Risk Prediction in Electronic Health Records Under Real-world Constraints** (arXiv 2026)
@@ -2015,6 +2072,11 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   [OpenReview](https://openreview.net/forum?id=3qspmxVnC1)
   > Releases genetic datasets on which current TFMs underperform and outlines a path to close the gap.
 
+- **Tabular Foundation Models in Financial Predictions** (arXiv, Nov 2026)
+  *Ed deHaan, Allen H. Huang*
+  [Paper](https://arxiv.org/abs/2611.13550)
+  > A technical note for accounting research that evaluates tabular foundation models on one benchmark task: predicting firms' next-year earnings changes. The models studied are pretrained on synthetic tables, which avoids look-ahead bias from memorizing firms' outcomes, and they predict in context with no post-release training or tuning. Google Research's TabFM is more accurate than a fine-tuned open-weight language model from recent accounting work and than the tree-based models compared, and it is faster and less compute-intensive than the language model. Several tree specifications are faster than TabFM. The authors frame the result as a single-task comparison, and state that no model class is likely to dominate every setting.
+
 ## Benchmarks & Evaluation
 
 Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147), LTM benchmarks should evaluate models across multiple dimensions:
@@ -2053,6 +2115,8 @@ Based on [van Breugel & van der Schaar (2024)](https://arxiv.org/abs/2405.01147)
 - **TabZilla** - Comprehensive tabular data benchmark ([paper](https://arxiv.org/abs/2305.02997))
 - **OpenML** - Large collection of tabular datasets
 - **Kaggle Competitions** - Real-world tabular challenges
+
+- **[One Table, Many Queries (OTBench)](https://arxiv.org/abs/2611.13001)** (arXiv, Nov 2026, [code](https://github.com/limix-ldm-ai/OTBench)) - Benchmark of generation, imputation, and prediction on shared tables: 56 datasets, 46 registered methods, and 20 capability axes under aligned splits and explicit task contracts. Rank comparisons connect imputation and prediction through numerical recovery and dependence preservation, and connect generation to both through predictive utility, while distributional fidelity often ranks differently. Frozen foundation models are strong on prediction and numerical point imputation and show promising synthetic-data utility; fidelity continues to favor specialization. *Yuanrui Wang, Kaifang Li, Xuanyue Li, Ziyun Li, Yan Lu, Xingxuan Zhang, Peng Cui.*
 
 #### From the ICML 2026 FMSD Workshop
 
