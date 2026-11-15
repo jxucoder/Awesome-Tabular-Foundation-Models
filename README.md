@@ -99,6 +99,7 @@ LTMs could serve as invaluable tools for:
 - **[Tabular Attention Benchmark](https://github.com/SAP-samples/tabular-attention-benchmark)**: SAP's reproducible benchmark for 2D row/column attention backends (Torch SDPA, cuDNN, FlashAttention-2/3/4, vLLM, SageAttention) on A100/H100/B200 GPUs.
 - **[TabReliBench](https://github.com/Tianqi-Zhao/TabReliBench)**: Evaluation suite for benchmarking the reliability, calibration, and predictive distributions of tabular foundation models beyond point accuracy.
 - **[TabPFN IML](https://github.com/david-rundel/tabpfn_iml)**: Interpretability methods (feature effects, importance, Shapley) specialised for TabPFN.
+- **[GeneICL](https://github.com/BoevaLab/GeneICL)**: Tabular foundation model for bulk transcriptomics classification, regression, and survival (`pip install geneicl`). Checkpoints ship with the package.
 
 ## Papers
 
@@ -690,6 +691,11 @@ LTMs could serve as invaluable tools for:
   [Paper](https://arxiv.org/abs/2603.29475) | [Code](https://github.com/yayapa/sic) | [Model](https://huggingface.co/yayapa/sic)
   > SIC approximates the Bayesian posterior predictive for survival under a synthetic prior that controls covariates and the time-event distribution. Individualized survival curves are predicted in one forward pass; on real survival datasets the report finds it competitive with or ahead of classical and deep survival models, particularly in small and medium data regimes.
 
+- **TILE: Bridging LLMs and Table Foundation Models for Tabular Learning with Strings** (arXiv, Oct 2026)
+  *Félix Lefebvre, David Holzmüller, Gioia Blayer, Myung Jun Kim, Marine Le Morvan, Gaël Varoquaux*
+  [Paper](https://arxiv.org/abs/2610.17065) | [Code](https://github.com/soda-inria/tile) | [Data](https://huggingface.co/datasets/inria-soda/TILE-benchmark)
+  > An interface that makes LLM features useful to tabular foundation models on tables with free-form strings: row serialization for cross-column context, intermediate-layer extraction, columnar pooling, and a bypass so numbers and categories skip the LLM. Paired with TFMs, it beats the strongest baseline on 90% of splits across 100 datasets, with gains for 7 LLMs and 10 tabular learners, and ranks first on STRABLE's 108 datasets.
+
 ### Synthetic Data & Generation
 
 - **TabuLa: Harnessing Language Models for Tabular Data Synthesis** (arXiv 2023)
@@ -756,6 +762,11 @@ LTMs could serve as invaluable tools for:
   *Yu-Sheng Li, Jun-Peng Jiang, Han-Jia Ye*
   [Paper](https://arxiv.org/abs/2610.16990)
   > Maps heterogeneous tables into a shared latent space via a pretrained tabular encoder and trains an in-context diffusion model conditioned on a small set of clean examples, paired with a lightweight MLP decoder. Consistently outperforms representative tabular generators across 18 datasets, especially when target-domain context is scarce.
+
+- **TabMosaic: Unified In-Context Diffusion for Tabular Generative Tasks** (arXiv, Oct 2026)
+  *Jayoung Kim, Sanghyun Hong, Noseong Park*
+  [Paper](https://arxiv.org/abs/2610.15699)
+  > An in-context diffusion model that generates an arbitrary set of mixed-type target cells in an unseen, possibly incomplete table, with no table-specific training. The pretraining objective bounds the conditional negative log-likelihood and the divergence from the posterior predictive for any target set. Across 48 real-world tables it ranks first on all evaluated generative tasks against 20 baselines.
 
 ### Graph & Relational Data
 
@@ -1379,6 +1390,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   [Paper](https://arxiv.org/abs/2610.37737) | [Code](https://github.com/youngers2006/Trust-Region-Warping-For-PFNs)
   > A PFN surrogate's log-likelihood falls behind a refitted Gaussian process when the objective lengthscale moves away from the meta-training prior, and optimisation suffers with it. ATR warping rescales inputs by kernel-target-alignment lengthscales inside a trust region, without retraining the network or changing its inference cost, and improves optimisation at both extremes of the lengthscale range on Matérn-3/2 draws.
 
+- **Out-of-the-Box Tabular Foundation Models for Bayesian Optimization in Materials Discovery** (AI4Mat @ NeurIPS 2026)
+  *Klemens Flöge, Simon Bing, Leo Grinsztajn, Eliott Kalfon, Lennart Purucker, Noah Hollmann, Frank Hutter*
+  [OpenReview](https://openreview.net/forum?id=y7ZFsfh2Uy) | [NeurIPS](https://neurips.cc/virtual/2026/167775) | [Code](https://github.com/PriorLabs/matsci-bo-bench)
+  > Evaluates TabPFN and TabICL as out-of-the-box surrogates for Bayesian optimization on two standard materials-science benchmarks, against Gaussian processes, random forests, and CatBoost. The TFMs are competitive across the tasks as untuned models that were not trained for active learning.
+
 ### Architectures & Training
 
 - **MotherNet: A Foundational Hypernetwork for Tabular Classification** (arXiv 2023)
@@ -1504,6 +1520,11 @@ PFN-style and TFM-based approaches to forecasting, time-series classification, a
   *Thomas Bartz-Beielstein*
   [Paper](https://arxiv.org/abs/2611.04056)
   > Replaces a hand-weighted mixture generator with named component priors composed by mixture, convolution, amplitude scaling, local transform, and projection, with proved algebraic laws and an implementation in the macl2l package. A mixture of small components matches or beats every individual component on seven of eight open regression benchmarks; a pre-registered test that averaged component networks would be the Bayes predictor for the mixture failed, because the networks rarely identified which component had generated the data.
+
+- **ElTab: Elastically Looped Tabular Transformers** (arXiv, Oct 2026)
+  *Mieszko Komisarczyk, Saurabh Mathur, Maurice Kraus, Sriraam Natarajan, Kristian Kersting*
+  [Paper](https://arxiv.org/abs/2610.41819)
+  > Trains one looped TabPFN-style transformer to run at many depths by supervising randomly sampled early exits, so a single checkpoint covers several inference budgets. On 30 OpenML classification datasets it matches six depth-specific looped models while cutting training cost by more than half, and matches a 12-layer TabPFN-style baseline with 25% fewer inference FLOPs.
 
 ### Theory & Analysis
 
@@ -1951,6 +1972,11 @@ TFMs applied outside classic tabular benchmarks, and domain-specific evaluations
   *Ebrahim Khaled Ebrahim*
   [Paper](https://arxiv.org/abs/2610.39065)
   > Compares TabPFN-3.5, TabICLv2, and Mitra-v2 with Firth logistic regression plus intercept correction in 58 pre-registered scenarios where the true risk is known, then on four clinical datasets. Calibration slopes match that logistic baseline within the pre-registered margin in 36 or 37 of 48 core scenarios; on real data, no model keeps calibration when the event rate changes across populations, and recalibration on 500 local patients largely repairs it.
+
+- **GeneICL: A Tabular Foundation Model for Bulk Transcriptomics** (arXiv, Oct 2026)
+  *Michael Bohl, Alexander Theus, David Wissel, Valentina Boeva*
+  [Paper](https://arxiv.org/abs/2610.08694) | [Code](https://github.com/BoevaLab/GeneICL)
+  > A 4.2M-parameter tabular foundation model with a semi-synthetic pretraining prior built from measured bulk expression profiles and a parameter-efficient recurrent architecture. Right-censored survival is reduced to regression with Cox partial-likelihood residuals, and inference runs the frozen model with no gradient updates. On 80 clinical outcome tasks spanning classification, regression, and survival, it ranks best overall among the foundation models and tuned baselines in the study, with up to 387× fewer parameters and predictions in seconds on a laptop CPU.
 
 **Economics, finance & marketing**
 
